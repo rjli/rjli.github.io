@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>分类: 其他 | Cheryl的博客</title>
+<title>Cheryl的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
@@ -139,47 +139,76 @@
         <div class="container">
             <div class="row">
                 <main class="col-md-8 main-content ">
-                    <h3> 
-    
-        其他 
-    
-</h3>
+                    <article class="post">
+    <h1 class="post-head"></h1>
+    <div class="post-body">
+        <h1 id="实时视屏播放的简单实现"><a href="#实时视屏播放的简单实现" class="headerlink" title="实时视屏播放的简单实现"></a>实时视屏播放的简单实现</h1><blockquote>
+<p>通过使用nginx搭建一个简单的服务器，使用ffmpeg推送rtmp实时流，利用video标签实现可以在web端和手机端的浏览器中进行直播。</p>
+</blockquote>
+<h2 id="Windows下面搭建基于rtmp的服务器"><a href="#Windows下面搭建基于rtmp的服务器" class="headerlink" title="Windows下面搭建基于rtmp的服务器"></a>Windows下面搭建基于rtmp的服务器</h2><h3 id="硬件环境"><a href="#硬件环境" class="headerlink" title="硬件环境"></a>硬件环境</h3><p>操作系统：windows7旗舰版 </p>
+<p>处  理  器：Intel(R) Core(TM)i5-5200 CPU @2.20GHz 2.20 GHz</p>
+<p>系统内存： 8GB</p>
+<p>系统类型：64位操作系统</p>
+<h3 id="软件环境及配置"><a href="#软件环境及配置" class="headerlink" title="软件环境及配置"></a>软件环境及配置</h3><ol>
+<li><p>下载 nginx 1.7.11.3 Gryphon，然后解压到对应的目录；<br><a href="http://nginx-win.ecsds.eu/download/nginx%201.7.11.3%20Gryphon.zip" target="_blank" rel="noopener">下载链接-Gryphon.zip</a></p>
+<blockquote>
+<p>将解压后的目录名:nginx 1.7.11.3 Gryphon改成:nginx-1.7.11.3-Gryphon</p>
+</blockquote>
+<p>​</p>
+</li>
+<li><p>下载服务器状态检查程序 stat.xsl</p>
+<p><a href="https://github.com/arut/nginx-rtmp-module/" target="_blank" rel="noopener">下载地址</a></p>
+</li>
+<li><p>将nginx-rtmp-module-master.zip解压后复制到目录:nginx-1.7.11.3-Gryphon中。</p>
+<blockquote>
+<p> 保证stat.xls的目录为:nginx-1.7.11.3-Gryphon\nginx-rtmp-module\stat.xsl</p>
+</blockquote>
+</li>
+<li><p>修改conf\nginx-win.conf 配置文件。</p>
+<ul>
+<li>添加rtmp服务。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rtmp &#123;</span><br><span class="line"> server &#123;</span><br><span class="line">     listen 1935;</span><br><span class="line">     chunk_size 4000;</span><br><span class="line">     application hls&#123;</span><br><span class="line">         live on ;                      </span><br><span class="line">         hls on ; </span><br><span class="line">         hls_path html/hls;</span><br><span class="line">         hls_fragment 5s;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>配置http server</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    location /hls &#123;  </span><br><span class="line">        types &#123;  </span><br><span class="line">            application/vnd.apple.mpegurl m3u8;  </span><br><span class="line">            video/mp2t ts;  </span><br><span class="line">        &#125;  </span><br><span class="line">        root html;  </span><br><span class="line">        expires -1;  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="5">
+<li><p>启动服务器</p>
+<p>在nginx.exe所在的文件夹，按住shift+右键，选中在此处打开命令窗口，进入windows的cmd。输入以下命令启动nginx服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx.exe -c conf\nginx-win.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动结果<br><img src="E:\learn\gitbook\rtsp-hls-online-live\cmd-result.png" alt="avatar">     </p>
+</li>
+<li><p>直接在浏览器里输入127.0.0.1就可以进入浏览器的欢迎界面<br><img src="E:\learn\gitbook\rtsp-hls-online-live\result.png" alt="avatar"></p>
+</li>
+</ol>
+<h2 id="提供rtmp直播源"><a href="#提供rtmp直播源" class="headerlink" title="提供rtmp直播源"></a>提供rtmp直播源</h2><p>在搭建好基于rtmp的服务器之后，需要提供rtmp直播源。这里我们使用的海康视屏的rtsp直播源。根据nginx.conf中的hls_path配置，下面这个命令会向本地的html\hls下面写入ts片段和m3u8文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f rtsp  -re -analyzeduration 8000 -probesize 200000 -i &quot;rtsp://admin:hbj3022810@171.121.218.169:2554/h264/ch33/main/av_stream&quot; -strict -2  -c copy -flvflags aac_seq_header_detect -f flv rtmp://localhost/hls/mystream</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意</p>
+<p>1、这里提供rtmp源的机器不一定和nginx在同一台物理主机上，可以是网络上的另一台机器，只要保证它能与nginx所在的主机建立tcp链接即可。（也就是nginx主机需要开启rtmp服务的监听端口，这里是1935，当然你也可以修改为其他的端口。）  </p>
+</blockquote>
+<h2 id="在网页中展示视屏"><a href="#在网页中展示视屏" class="headerlink" title="在网页中展示视屏"></a>在网页中展示视屏</h2><p>在nginx-1.7.11.3-Gryphon/html目录下面创建一个live.html。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://vjs.zencdn.net/5.10/video-js.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">    &lt;video id=example-video width=960 height=540 class=&quot;video-js vjs-default-skin&quot; controls autoplay=true&gt;</span><br><span class="line">        &lt;source src=&quot;hls/mystream.m3u8&quot; type=&quot;application/x-mpegURL&quot;&gt;</span><br><span class="line">    &lt;/video&gt;</span><br><span class="line">    &lt;script src=&quot;http://vjs.zencdn.net/5.10/video.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">   	&lt;script src=&quot;https://npmcdn.com/videojs-contrib-hls@^3.0.0/dist/videojs-contrib-hls.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">   &lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var player = videojs(&apos;example-video&apos;);</span><br><span class="line">        player.play();</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果只是用video标签是无法播放.m3u8的视屏文件的，需要引入videojs-contrib-hls.js。videojs-contrib-hls支持一堆HLS功能</p>
+</blockquote>
+<ul>
+<li><p>web端运行效果</p>
+<p><img src="E:\learn\gitbook\rtsp-hls-online-live\web.png" alt="avatar"></p>
+</li>
+<li><p>手机端运行效果</p>
+</li>
+</ul>
+<p>  手机端如果与web可以在同一个网络环境中，那么输入对应本机ip地址也是可以查看的，并且支持横屏、竖屏的切换。</p>
+<p>  <img src="E:\learn\gitbook\rtsp-hls-online-live\app1.png" alt="avatar"></p>
 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/07/10/createblogbyhexo/">使用GitHub+Hexo搭建免费博客</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年07月10日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    使用GitHub + Hexo 搭建免费博客搭建博客扩展功能评论Gitmenthttps://segmentfault.com/a/1190000009664550
-多个分支提交博客
-参考链接
-Hexo 个性化配置(三)
-
-https...
-                
-            </p> 
-        </div>
-    </article>
- 
-
-
-
-
-
-
-
-
-
+    </div>
+</article>
                 </main>
                 
                     

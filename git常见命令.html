@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>分类: 其他 | Cheryl的博客</title>
+<title>Cheryl的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
@@ -139,47 +139,74 @@
         <div class="container">
             <div class="row">
                 <main class="col-md-8 main-content ">
-                    <h3> 
-    
-        其他 
-    
-</h3>
-
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/07/10/createblogbyhexo/">使用GitHub+Hexo搭建免费博客</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年07月10日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    使用GitHub + Hexo 搭建免费博客搭建博客扩展功能评论Gitmenthttps://segmentfault.com/a/1190000009664550
-多个分支提交博客
-参考链接
-Hexo 个性化配置(三)
-
-https...
-                
-            </p> 
-        </div>
-    </article>
- 
-
-
-
-
-
-
-
-
-
+                    <article class="post">
+    <h1 class="post-head"></h1>
+    <div class="post-body">
+        <h1 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a>git 命令</h1><h2 id="初始化本地仓库"><a href="#初始化本地仓库" class="headerlink" title="初始化本地仓库"></a>初始化本地仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://github.com/rjli/booktobook.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在github上面创建远程仓库的时候，不要创建readme.md,即可用上述命令创建成功</p>
+</blockquote>
+<h4 id="查看远程仓库的信息"><a href="#查看远程仓库的信息" class="headerlink" title="查看远程仓库的信息"></a>查看远程仓库的信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<h5 id="查看所有分支，远程分支是红色的"><a href="#查看所有分支，远程分支是红色的" class="headerlink" title="查看所有分支，远程分支是红色的"></a>查看所有分支，远程分支是红色的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br></pre></td></tr></table></figure>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>把分支推送到远端</p>
+<p><a href="https://blog.csdn.net/kakadiablo/article/details/79517985" target="_blank" rel="noopener">https://blog.csdn.net/kakadiablo/article/details/79517985</a></p>
+<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p><a href="https://blog.csdn.net/qq_32452623/article/details/54340749" target="_blank" rel="noopener">https://blog.csdn.net/qq_32452623/article/details/54340749</a></p>
+<h3 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h3><ul>
+<li>使用如下git命令查看所有远程分支：</li>
+</ul>
+<p><code>git branch -r</code></p>
+<ul>
+<li>查看远程和本地所有分支： </li>
+</ul>
+<p><code>git branch -a</code></p>
+<ul>
+<li>查看本地分支： </li>
+</ul>
+<p><code>git branch</code> </p>
+<blockquote>
+<p>在输出结果中，前面带<code>*</code> 的是当前分支。</p>
+</blockquote>
+<h3 id="拉取远程分支并创建本地分支"><a href="#拉取远程分支并创建本地分支" class="headerlink" title="拉取远程分支并创建本地分支"></a>拉取远程分支并创建本地分支</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>使用如下命令：</p>
+<p><code>git checkout -b 本地分支名x origin/远程分支名x</code></p>
+<p>使用该方式会在本地新建分支x，并自动切换到该本地分支x。</p>
+<p>采用此种方法建立的本地分支会和远程分支建立映射关系。</p>
+<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>使用如下命令：</p>
+<p><code>git fetch origin 远程分支名x:本地分支名x</code></p>
+<p>使用该方式会在本地新建分支x，但是不会自动切换到该本地分支x，需要手动checkout。</p>
+<p>采用此种方法建立的本地分支不会和远程分支建立映射关系。</p>
+<h3 id="本地分支和远程分支"><a href="#本地分支和远程分支" class="headerlink" title="本地分支和远程分支"></a>本地分支和远程分支</h3><p><a href="https://blog.csdn.net/carfge/article/details/79691360" target="_blank" rel="noopener">https://blog.csdn.net/carfge/article/details/79691360</a></p>
+<h4 id="建立映射关系的作用"><a href="#建立映射关系的作用" class="headerlink" title="建立映射关系的作用"></a>建立映射关系的作用</h4><h4 id="建立映射关系（或者为跟踪关系track）。"><a href="#建立映射关系（或者为跟踪关系track）。" class="headerlink" title="建立映射关系（或者为跟踪关系track）。"></a>建立映射关系（或者为跟踪关系track）。</h4><p>这样使用git pull或者git push时就不必每次都要指定从远程的哪个分支拉取合并和推送到远程的哪个分支了。<br><code>git branch -vv</code><br>输出：<br><img src="https://img-blog.csdn.net/20180208101910427?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmd4aWFveWFuZzA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>上面的本地分支和远程分支都有映射关系，如果没有，就需要手动建立：<br><code>git branch -u origin/分支名</code>，<br>或者<br><code>git branch --set-upstream-to origin/分支名</code><br><code>origin</code> 为git地址的标志，可以建立当前分支与远程分支的映射关系。</p>
+<h4 id="撤销本映射关系"><a href="#撤销本映射关系" class="headerlink" title="撤销本映射关系"></a>撤销本映射关系</h4><p><code>git branch --unset-upstream</code><br>之后可以再次用<code>git branch -vv</code> 查看本地分支和远程分支映射关系</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li><p><strong>本地分支只能跟踪远程的同名分支吗？</strong></p>
+<p>答案是否定的，本地分支可以与远程不同名的分支建立映射关系</p>
+</li>
+</ul>
+<p>​       操作和之前的一样，只是可以指定和本地分支名不同的远程分支名，然后使用<code>git branch -vv</code> 查看映射关系，可以发现建立映射成功。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>###fatal: ‘origin’ does not appear to be a git repository</p>
+<p>​    fatal: Could not read from remote repository.</p>
+<p>​    Please make sure you have the correct access rights and the repository exists.</p>
+<p>​    翻译： 致命：“origin”不是一个 git 存储库</p>
+<p>​                 致命：无法读取远程存储库</p>
+<p>​                 请确定你有正确的访问权力，并且 存储库存在 </p>
+<p>   解决方案：  1. 首先,检查你的起源是设定的运行<br>                              git remote -v<br>                           显示<br>                         orgin    <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:chaorwin/chaorwin.git (fetch)<br>                         orgin    <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:chaorwin/chaorwin.git (push)<br>                          “origin” 不存在</p>
+<p>​                       2.重命名它,或改变URL,删除它,然后添加正确的一个。</p>
+<p>​                            git remote remove orgin</p>
+<p>​                      3. 增加一个</p>
+<p>​                            git remot add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:chaorwin/chaorwin.git</p>
+<p>​                      4. git push origin master</p>
+<ul>
+<li>github RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054</li>
+</ul>
+<p>2018年06月13日 02:10:35</p>
+<p>阅读数：641</p>
+<p>出现此问题有可能是上传大小限制：<br>执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config http.postBuffer 524288000</span><br><span class="line"></span><br><span class="line">524288000算法：</span><br><span class="line">1024*1024*5001234</span><br></pre></td></tr></table></figure>
+<p>出现如下错误：curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">执行：</span><br><span class="line">git config http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+    </div>
+</article>
                 </main>
                 
                     
