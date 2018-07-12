@@ -149,3 +149,25 @@ https://blog.csdn.net/carfge/article/details/79691360
 
 ​                      4. git push origin master
 
+- github RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054
+
+2018年06月13日 02:10:35
+
+阅读数：641
+
+出现此问题有可能是上传大小限制： 
+执行如下命令
+
+```
+git config http.postBuffer 524288000
+
+524288000算法：
+1024*1024*5001234
+```
+
+出现如下错误：curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL
+
+```
+执行：
+git config http.sslVerify "false"
+```
