@@ -2,8 +2,6 @@
 
 ## 初始化本地仓库
 
-
-
 ```
 git init
 git add README.md
@@ -14,19 +12,23 @@ git push -u origin master
 
 > 在github上面创建远程仓库的时候，不要创建readme.md,即可用上述命令创建成功
 
-#### 查看远程仓库的信息
+【问题】
 
-```
-git remote -v  
-```
-
-##### 查看所有分支，远程分支是红色的
-
-```
-git branch -a
-```
+- 因为本地创建了readme.md，导致提交的时候造成了冲突
 
 
+
+### gitignore文件
+
+- 项目初始化的时候添加.gitignore
+
+  因为是点开头，没有文件名，没办法直接在windows目录下直接创建，必须通过右键Git Bash，按照linux的方式来新建.gitignore文件。具体步骤如下：
+
+  1. 在需要创建 .gitignore 文件的文件夹, 右键选择Git Bash 进入命令行，进入项目所在目录。
+  2. 输入 touch .gitignore 在文件夹就生成了一个“.gitignore”文件。
+  3. 然后在”.gitignore” 文件里输入你要忽略的文件夹及其文件就可以了。
+
+> 在添加.gitignore文件的时候，参照 [gitignore 原则](https://blog.csdn.net/qq_34581118/article/details/78437992?locationNum=4&fps=1 )
 
 ## 分支
 
@@ -34,11 +36,25 @@ git branch -a
 
 https://blog.csdn.net/kakadiablo/article/details/79517985
 
+### 创建分支
+
 
 
 ###  删除分支
 
-https://blog.csdn.net/qq_32452623/article/details/54340749
+- 删除本地分支
+
+```
+git branch -D <BranchName>
+```
+
+- 删除远程分支
+
+```
+git push origin --delete <BranchName>
+```
+
+  
 
 ### 查看远程分支
 
@@ -46,11 +62,13 @@ https://blog.csdn.net/qq_32452623/article/details/54340749
 
 `git branch -r`
 
-- 查看远程和本地所有分支： 
+- 查看远程和本地所有分支：
 
 `git branch -a`
 
-- 查看本地分支： 
+> 其中远程分支是红色的
+
+- 查看本地分支 
 
 `git branch` 
 
@@ -104,37 +122,37 @@ https://blog.csdn.net/carfge/article/details/79691360
 `git branch --unset-upstream` 
 之后可以再次用`git branch -vv` 查看本地分支和远程分支映射关系
 
-#### 其他
+#### 本地分支只能跟踪远程的同名分支吗
 
-- **本地分支只能跟踪远程的同名分支吗？**
-
-  答案是否定的，本地分支可以与远程不同名的分支建立映射关系
+- 答案是否定的，本地分支可以与远程不同名的分支建立映射关系
 
 ​       操作和之前的一样，只是可以指定和本地分支名不同的远程分支名，然后使用`git branch -vv` 查看映射关系，可以发现建立映射成功。
 
  
 
-
-
 ## 常见问题
 
-###fatal: 'origin' does not appear to be a git repository
+### 远程库‘origin’不存在
 
- 
+ 【 问题描述】
 
-​    fatal: Could not read from remote repository.
+>   fatal: 'origin' does not appear to be a git repository
+>
+> ​    fatal: Could not read from remote repository.
+>
+> ​    Please make sure you have the correct access rights and the repository exists.
 
-​    Please make sure you have the correct access rights and the repository exists.
+  【 解决方案】
 
-​    翻译： 致命：“origin”不是一个 git 存储库
+- 首先,检查你的起源是设定的运行
 
-​                 致命：无法读取远程存储库
+  ```
+  git remote -v
+  ```
 
-​                 请确定你有正确的访问权力，并且 存储库存在 
+  ​                          
 
-   解决方案：  1. 首先,检查你的起源是设定的运行
-                              git remote -v
-                           显示
+​                           显示
                          orgin    git@github.com:chaorwin/chaorwin.git (fetch)
                          orgin    git@github.com:chaorwin/chaorwin.git (push)
                           "origin" 不存在
@@ -149,25 +167,29 @@ https://blog.csdn.net/carfge/article/details/79691360
 
 ​                      4. git push origin master
 
-- github RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054
+### 文件大小超过限制
 
-2018年06月13日 02:10:35
+问题描述: 
 
-阅读数：641
+>  github RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054
 
-出现此问题有可能是上传大小限制： 
-执行如下命令
+出现此问题有可能是上传大小限制
+执行如下命令:
 
 ```
 git config http.postBuffer 524288000
-
-524288000算法：
-1024*1024*5001234
+//524288000算法： 1024*1024*500(500M)
 ```
 
-出现如下错误：curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL
+在更改了文件大小之后，可能会出现如下错误：
+
+>  curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL
 
 ```
-执行：
 git config http.sslVerify "false"
 ```
+## 参考文章
+
+- [git常见命令思维导图](http://img.blog.csdn.net/20160613140756568)
+
+  

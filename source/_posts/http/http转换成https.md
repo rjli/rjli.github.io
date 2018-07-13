@@ -1,3 +1,13 @@
+---
+title: 'java web应用的http请求改成https'
+comments: false
+date: 2018-07-10 09:24:11
+categories: 后端
+tags: [ssh,https]
+---
+
+
+
 # java web应用的http请求改成https
 
 
@@ -24,7 +34,7 @@
 keytool -genkeypair -alias "test1" -keyalg "RSA" -keystore "test.keystore"  
 ```
 
-![img](/images/https/1.jpg)
+![avatar](/images/https/1.jpg)
 
 
 
@@ -56,7 +66,7 @@ keytool -genkeypair -alias "test1" -keyalg "RSA" -keystore "test.keystore"
 keytool -list -keystore test.keystore  
 ```
 
-![img](/images/https/2.jpg)
+![avatar](/images/https/2.jpg)
 
 - 功能：
 
@@ -68,7 +78,7 @@ keytool -list -keystore test.keystore
 keytool -export -alias test1 -file test.crt -keystore test.keystore  
 ```
 
-![img](/images/https/3.jpg)
+![avatar](/images/https/3.jpg)
 
 - 功能：
 
@@ -129,9 +139,10 @@ keytool -printcert -file "test.crt"
 ```
 
 - keystoreFile：证书文件的位置
+
 - keystorePass: 是keystore的密码（你在生成证书的时候，会有的keystore密码和tomcat主密码）
 
-### 
+  
 
 ## 使用阿里云服务器生成免费证书
 

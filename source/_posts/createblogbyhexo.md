@@ -3,7 +3,7 @@ title: '使用GitHub+Hexo搭建免费博客'
 comments: true
 date: 2018-07-10 09:24:11
 categories: 其他
-tags: 
+tags: [hexo,github]
 ---
 
 # 使用GitHub + Hexo 搭建免费博客
@@ -14,9 +14,7 @@ tags:
 
 ### 评论
 
-#### Gitment
 
-https://segmentfault.com/a/1190000009664550
 
 
 
