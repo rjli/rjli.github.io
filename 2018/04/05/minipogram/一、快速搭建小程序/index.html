@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>快速搭建小程序项目 | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="快速搭建小程序项目">
+            
+	            快速搭建小程序项目
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/小程序">
+            小程序
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/05</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="小程序搭建"><a href="#小程序搭建" class="headerlink" title="小程序搭建"></a>小程序搭建</h1><hr>
+<h2 id="开发工具安装"><a href="#开发工具安装" class="headerlink" title="开发工具安装"></a>开发工具安装</h2><p>微信公众平台提供了winddows64,windows32,mac三个操作系统下的安装包，我们选择合适自己下载即可。（<a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html" target="_blank" rel="noopener">微信开发者工具下载链接</a>）</p>
+<blockquote>
+<p>备注： 小程序的开发工具除了使用官方提供的微信开发者工具之外，还可以使用SublimeText,或者是WebStrom等，然后配合使用微信开发者工具进行调试操作。</p>
+</blockquote>
+<h2 id="快速创建项目"><a href="#快速创建项目" class="headerlink" title="快速创建项目"></a>快速创建项目</h2><p>在根据提示安装完成之后，我们需要用微信扫描二维码登录微信开发者工具。然后选择小程序项目</p>
+<p><img src="/images/miniprogram/choose.png" alt="avatar"></p>
+<p>然后我们选择小程序存放的位置，填写对应的demo，选择体验小程序，并且勾选建立普通快速启动模板。</p>
+<p><img src="/images/miniprogram/newDemo.png" alt="avatar"></p>
+<p>这里我们先使用无appId的方式即体验模式，虽然无法进行代码真机预览和上传等操作，部分 API 无法正常调用，但是不影响我们正常的开发。项目创建完如下图所示</p>
+<p><img src="/images/miniprogram/demo-detail.png" alt="avatar"></p>
+<blockquote>
+<p>关于开发工具再此不做详细说明，详情可以参考<a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/page.html#%E5%90%AF%E5%8A%A8%E9%A1%B5" target="_blank" rel="noopener">小程序开发工具介绍</a></p>
+</blockquote>
+<h2 id="项目结构介绍"><a href="#项目结构介绍" class="headerlink" title="项目结构介绍"></a>项目结构介绍</h2><h3 id="小程序文件类型"><a href="#小程序文件类型" class="headerlink" title="小程序文件类型"></a>小程序文件类型</h3><p>小程序中有且只有以下4中类型的文件：</p>
+<ul>
+<li>json 后缀的 JSON 配置文件</li>
+<li>wxml 后缀的 WXML 模板文件</li>
+<li>wxss 后缀的 WXSS 样式文件</li>
+<li>js 后缀的 JS 脚本逻辑文件</li>
+</ul>
+<h3 id="包结构"><a href="#包结构" class="headerlink" title="包结构"></a>包结构</h3><p>小程序的默认的包结构如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+- pages</span><br><span class="line">	+- indexs</span><br><span class="line">		- index.js</span><br><span class="line">		- index.json</span><br><span class="line">		- index.wsml</span><br><span class="line">		- index.wxss</span><br><span class="line">	+- logs</span><br><span class="line">		- logs.js</span><br><span class="line">		- logs.json</span><br><span class="line">		- logs.wsml</span><br><span class="line">		- logs.wxss</span><br><span class="line">+- utils</span><br><span class="line">	- util.js</span><br><span class="line">app.js</span><br><span class="line">app.json</span><br><span class="line">app.wxss</span><br><span class="line">project.config.json</span><br></pre></td></tr></table></figure>
+<p>所有的配置遵循就近原则</p>
+<h3 id="包结构说明"><a href="#包结构说明" class="headerlink" title="包结构说明"></a>包结构说明</h3><p>1.app.json 小程序逻辑（必须）</p>
+<blockquote>
+<p>app.json中的App() 函数用来注册一个小程序。接受一个 object 参数，其指定小程序的生命周期函数等。</p>
+</blockquote>
+<p>2.app.json 小程序公共设置（必须）</p>
+<blockquote>
+<p>app.json文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。</p>
+</blockquote>
+<p>3.app.wxss 全局样式文件 </p>
+<blockquote>
+<p>在app.wxss中可以定义一些全局属性的样式，这样相同的养生石在单独的页面中就无需在配置了。</p>
+</blockquote>
+<p>4.project.config.json 是工具配置文件。</p>
+<blockquote>
+<p>所有对当前开发工具做的操作都会保存到project.config.json文件中，当我们重新安装工具或者是更换电脑时，只需导入项目的代码即可恢复我们之前对工具的一些设置。</p>
+</blockquote>
+<p>5.pages 小程序模板存放的文件夹</p>
+<blockquote>
+<p>在小程序中所有的模板都在此文件中，并且每一个页面对应中有4个文件</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>必填</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>js</td>
+<td>是</td>
+<td>页面逻辑</td>
+</tr>
+<tr>
+<td>wxml</td>
+<td>是</td>
+<td>页面结构</td>
+</tr>
+<tr>
+<td>wxss</td>
+<td>否</td>
+<td>页面样式表</td>
+</tr>
+<tr>
+<td>json</td>
+<td>否</td>
+<td>页面配置</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>为了方便开发者减少配置项，描述页面的四个文件必须具有相同的路径与文件名。  </li>
+<li>页面中的wxss样式配置如果与app.wxss有相同的，那么采取就近原则，优先使用页面的样式。 </li>
+<li>小程序的页面是可以嵌套的，对应的可以有二级页面，三级页面等等，但是最多只能支持5级页面，这一点主要是从小程序的性能方面考虑，从而做的限制。  </li>
+</ul>
+</blockquote>
+<h1 id="编写简单页面"><a href="#编写简单页面" class="headerlink" title="编写简单页面"></a>编写简单页面</h1><h2 id="移动端的分辨率与rpx"><a href="#移动端的分辨率与rpx" class="headerlink" title="移动端的分辨率与rpx"></a>移动端的分辨率与rpx</h2><p>在开始编写页面之前我们首先要了解一下分辨率的概念，因为小程序是移动端的开发，在不同的机型中是需要进行适配的，所以要注意像素的使用。</p>
+<p><img src="/images/miniprogram/resolution.png" alt="avatar"></p>
+<ul>
+<li>pt  逻辑分辨率，pt的大小与屏幕尺寸与关系，简单可以理解为长度和视觉单位</li>
+<li>px  物理分辨率，与屏幕尺寸没有关系，用于描述一个单位中像素点的多少</li>
+<li>reader 设备像素比 一个pt包含多少个px，人类视觉极限为@2x</li>
+<li>ppi(dpi） 每一寸包含的px</li>
+</ul>
+<p>从上述图中可以看出1个pt可以有1个px构成也可以有2个，甚至是3个…</p>
+<p>小程序推荐的使用的单位是rpx。他和px之间的关系为 1rpx = 1px 。 唯一的区别就是rpx可以根据屏幕进行适配，而px不可以。</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
+<li>不是所有的单位都适合rpx<br>当需要的元素大小适应屏幕尺寸，就选择rpx作为单位，否者使用px作为单位。一般来说文字不建议使用rpx；建议margin-top，margint-bottom 使用rpx,因为屏幕是可以进行垂直滚动的，而margin-left，margin-right使用px，当然这个不是绝对的也是根据具体问题具体分析的。</li>
+<li>为什么使用ip6的物理分辨率来设计UI?<br>小程序的模拟器采用的是逻辑分辨率。在设计时采用的就是根据iphone6的屏幕来设计的。所以存在:1px = 1rpx=2pt。方便开发，所以在调试时使用iphone6模拟器进行调试。</li>
+<li>为什么iphone plus 的设备相素比大于iphone6的，但是图像并没有更清晰呢？<br>从理论上来说同一个单位的包含的物理像素点多，显示的图像会更细腻，更清晰，但是人类的极限的2备的像素比，所以虽然iphone6 plus 的像素比为3备的像素比但是我们视觉上并没有太大的感觉。</li>
+</ul>
+<h2 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h2><p>下图是我们将要实现的一个页面。<br><img src="/images/miniprogram/welcome.png" alt="avatar"></p>
+<h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p>首先创建一个空的项目，建立小程序中必须的文件app.json，app.wxss以及pages文件夹,以及。然在pages下面创建welcome文件夹，然后建立对应welcome.wxml,welcome.wxss文件。</p>
+<p><img src="/images/miniprogram/2-package.png" alt="avatar"></p>
+<p>创建完之后我们需要把页面注册的小程序中，也就是配置到app.json的pages中。否则是不可以预览这个页面的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;pages&quot;: [</span><br><span class="line">    &quot;pages/welcome/welcome&quot;   </span><br><span class="line">   ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>小程序中规定，pages下面的第一个页面，默认为显示的第一个页面  </li>
+<li>创建页面的一个快捷方式就是在直接在 app.json的pages数组中加入“pages/xxx/xxx”。在保存之后会在pages生成对应的xxx文件下面生成xxx.wxml、xxx.wxss、xxx.js以及xxx.json。</li>
+</ul>
+</blockquote>
+<h3 id="编写welcome-wxml"><a href="#编写welcome-wxml" class="headerlink" title="编写welcome.wxml"></a>编写welcome.wxml</h3><p>小程序中有一个基本的视图容器view,类似于html里面的div,用来分割页面中的不同部分。文字可以直接写也可使用text标签包围。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class=&apos;container&apos;&gt;</span><br><span class="line">  &lt;image class=&quot;welcome-avatar&quot; src=&apos;/images/welcome.jpg&apos;&gt;&lt;/image&gt;</span><br><span class="line">  &lt;text class=&quot;welcome-title&quot;&gt;Cheryl  Demo&lt;/text&gt;</span><br><span class="line">  &lt;view class=&apos;moto-container&apos;&gt;</span><br><span class="line">    &lt;text class=&apos;moto&apos;&gt;开启小程序之旅 &lt;/text&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>text标签的相关Tips  </li>
+</ul>
+<blockquote>
+<ul>
+<li>使用text包围的文字可以添加自定义样式，也可在手机中可以长按选中。</li>
+<li>可以识别转移字符,例如\n识别为换行   </li>
+<li>各个操作系统的空格标准并不一致。  </li>
+<li><text> 组件内只支持 <text> 嵌套。  </text></text></li>
+</ul>
+</blockquote>
+<p>在编写完页面之后，编写对应的wxss文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/* pages/welcome/welcome.wxss */</span><br><span class="line">.container&#123;</span><br><span class="line">  display:flex;/变成弹性模型/</span><br><span class="line">  flex-direction: column;/垂直布局/</span><br><span class="line">  align-items: center;/* 居中对齐 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.welcome-avatar&#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 200rpx;</span><br><span class="line">  margin-top: 160rpx;</span><br><span class="line">  /*图片显示成圆形  */</span><br><span class="line">  border-radius: 500px; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.welcome-title&#123;</span><br><span class="line">  font-size: 22px;</span><br><span class="line">  font-weight: bold; </span><br><span class="line">  margin-top: 40rpx;</span><br><span class="line">  color:  gray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.moto-container&#123;</span><br><span class="line">  border: 1px solid #FF99FF;</span><br><span class="line">  border-radius: 5px;</span><br><span class="line">  margin-top: 60rpx;</span><br><span class="line">  background-color: #FF99FF;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.moto&#123;</span><br><span class="line">  font-size: 20px;</span><br><span class="line">  color: #ffffff;</span><br><span class="line">  padding: 20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">page&#123;</span><br><span class="line">  background-color: #FFCCFF;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在小程序中不需要引入 wxss,因为app.json的pages中注册页面的时候无需指明具体的文件，所以pages可以自动的把welcome中4中不同类型的文件关联在一起。</p>
+<blockquote>
+<p>在wxml中样式可以使用class也可以使用style设置，建议静态样式放在wxss中有class指明，动态样式放在style。</p>
+</blockquote>
+<ul>
+<li>可能遇到的问题<br>在设置页面背景色的时候，如果我们在.container{}中设定了 background-color,那么会出现如下的结果<br><img src="F:/hexo/source/_posts/minipogram/images/miniprogram/2-error.png" alt="avatar"></li>
+</ul>
+<p>[解决方法]  </p>
+<ul>
+<li>指定height:1334rpx;但是如果换在其他模拟器中还是会出现上述问题。  </li>
+<li>指定height:100% 也无法实现预期的效果，原因的container中是有元素扩充起来的。  </li>
+<li>注意小程序默认在我们编写的骨架外面包裹了一个page标签，可以通过这个标签来设置整屏的颜色。</li>
+</ul>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/12/first-bolg/" class="pre-post btn btn-default" title='Stream API'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Stream API</span>
+        </a>
+    
+    
+        <a href="/2017/05/10/map/java计算两个经纬度之间的距离/" class="next-post btn btn-default" title='计算两个经纬度之间的距离'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">计算两个经纬度之间的距离</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#小程序搭建"><span class="toc-text">小程序搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发工具安装"><span class="toc-text">开发工具安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速创建项目"><span class="toc-text">快速创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目结构介绍"><span class="toc-text">项目结构介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#小程序文件类型"><span class="toc-text">小程序文件类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包结构"><span class="toc-text">包结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包结构说明"><span class="toc-text">包结构说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编写简单页面"><span class="toc-text">编写简单页面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#移动端的分辨率与rpx"><span class="toc-text">移动端的分辨率与rpx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-text">扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建页面"><span class="toc-text">创建页面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建文件"><span class="toc-text">创建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写welcome-wxml"><span class="toc-text">编写welcome.wxml</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
