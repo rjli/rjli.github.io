@@ -273,6 +273,9 @@
 <blockquote>
 <p> curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL</p>
 </blockquote>
+<p>因为服务器的SSL证书没有经过第三方机构的签署，所以才报错。解决方案如下：<br>第一步，克隆远程仓库时，用env命令设置GIT_SSL_NO_VERIFY环境变量为”ture”，并同时调用正常的git clone命令。完整的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">env GIT_SSL_NO_VERIFY=true git clone https://&lt;host_name/git/project.git</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+<p>第二步，在克隆完毕的仓库中将http.sslVerify设置为”false”。完整的命令如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li><a href="http://img.blog.csdn.net/20160613140756568" target="_blank" rel="noopener">git常见命令思维导图</a></li>
@@ -356,7 +359,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/小程序/"><i class="fa" aria-hidden="true">小程序</i></a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/小程序/"><i class="fa" aria-hidden="true">小程序</i></a><span class="category-list-count">1</span></li></ul>
     </div>
 
 
@@ -364,7 +367,7 @@
         
     <div class="widget">
       <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">2018年07月</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">2018年05月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">2018年04月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">2017年05月</i></a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">2018年07月</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">2018年05月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">2018年04月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">2017年05月</i></a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
@@ -373,7 +376,7 @@
   <div class="widget">
     <h3 class="title">标签云</h3>
     <div class="content tag-cloud">
-        <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/ffmpeg/" style="font-size: 10px;">ffmpeg</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tomcat-java/" style="font-size: 10px;">tomcat java</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/视频/" style="font-size: 10px;">视频</a>
+        <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/echarts/" style="font-size: 10px;">echarts</a> <a href="/tags/ffmpeg/" style="font-size: 10px;">ffmpeg</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/tomcat-java/" style="font-size: 10px;">tomcat java</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/视频/" style="font-size: 10px;">视频</a>
     </div>
   </div>
 

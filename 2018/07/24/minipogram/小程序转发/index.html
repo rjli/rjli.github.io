@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>Hello World | Cheryl的博客</title>
+<title>Cheryl的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
@@ -142,9 +142,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Hello World">
+        <h1 id="">
             
-	            Hello World
+	            NO Title!
             
         </h1>
         <div class="post-meta">
@@ -172,7 +172,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/07/12</span>
+            <span class="date-meta">2018/07/24</span>
         </span>
     
 </div>
@@ -182,15 +182,18 @@
     </div>
     
     <div class="post-body post-content">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="小程序分享转发实现"><a href="#小程序分享转发实现" class="headerlink" title="小程序分享转发实现"></a>小程序分享转发实现</h1><p>小程序分享或转发有两种方式，一种是通过在页面中自定义按钮的形式，另外一种只需要在js中定义 onShareAppMessage 函数，页面右上角就会出现转发的按钮。详细文档请参阅微信官方文档<a href="https://developers.weixin.qq.com/miniprogram/dev/api/share.html#onshareappmessageoptions" target="_blank" rel="noopener">微信转发API</a>。</p>
+<h2 id="分享方式"><a href="#分享方式" class="headerlink" title="分享方式"></a>分享方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  onShareAppMessage: function (res) &#123;</span><br><span class="line">    //menu 是来自右上角的转发，button是页面内的转发按钮。</span><br><span class="line">    if (res.from === &apos;button&apos;) &#123;</span><br><span class="line">      // 来自页面内转发按钮</span><br><span class="line">      console.log(res.target)</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: &apos;自定义转发标题&apos;, //如不不写默认为小程序的名称</span><br><span class="line">      path: &apos;/page/index&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="页面内按钮"><a href="#页面内按钮" class="headerlink" title="页面内按钮"></a>页面内按钮</h2><ul>
+<li><p>首先在页面内定义一个按钮，设置open-type为share</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button open-type=&quot;share&quot;&gt;转发&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<h2 id="分享内容"><a href="#分享内容" class="headerlink" title="分享内容"></a>分享内容</h2><h3 id="静态"><a href="#静态" class="headerlink" title="静态"></a>静态</h3><h3 id="动态"><a href="#动态" class="headerlink" title="动态"></a>动态</h3><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://blog.csdn.net/xiaochun365/article/details/76546585" target="_blank" rel="noopener">微信小程序 转发</a></li>
+<li><a href="https://www.cnblogs.com/till-the-end/p/8470557.html" target="_blank" rel="noopener"><a href="https://www.cnblogs.com/till-the-end/p/8470557.html" target="_blank" rel="noopener">微信小程序分享朋友圈的实现思路与解决办法</a></a></li>
+</ul>
 
     </div>
 
@@ -208,15 +211,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/07/24/minipogram/小程序转发/" class="pre-post btn btn-default" title=''>
+        <a href="/2018/07/24/minipogram/使用wxParse解析富文本/" class="pre-post btn btn-default" title=''>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
             <span class="hidden-xs"></span>
         </a>
     
     
-        <a href="/2018/07/10/http/http转换成https/" class="next-post btn btn-default" title='java web应用的http请求改成https'>
+        <a href="/2018/07/12/hello-world/" class="next-post btn btn-default" title='Hello World'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">java web应用的http请求改成https</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Hello World</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -255,7 +258,7 @@
     <div class="widget">
         <h3 class="title">文章目录</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#小程序分享转发实现"><span class="toc-text">小程序分享转发实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分享方式"><span class="toc-text">分享方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面内按钮"><span class="toc-text">页面内按钮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分享内容"><span class="toc-text">分享内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态"><span class="toc-text">静态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态"><span class="toc-text">动态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
         
     </div>
 </aside>

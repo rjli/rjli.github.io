@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>在项目中使用Echarts | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="在项目中使用Echarts">
+            
+	            在项目中使用Echarts
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/后端">
+            后端
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/echarts" title='echarts'>
+                        echarts
+                    </a>
+                
+                    <a href="/tags/java" title='java'>
+                        java
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/07/31</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>在echart官网中<a href="http://echarts.baidu.com/download.html" target="_blank" rel="noopener">下载对应的ecarts插件</a>。</p>
+<blockquote>
+<p>如果是开发中建议下载源代码，把下载下来的echarts.js 放在对应的文件中。</p>
+</blockquote>
+<h1 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h1><p>1、在页面中引入echarts.js。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;$&#123;appPath&#125;/plugins/echarts/echarts.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>2、定义存放ecahrt表格的容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;line&apos; style=&quot;height: 450px; border: 1px solid #ccc; padding: 10px;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&apos;noData&apos; style=&quot;height: 450px; border: 1px solid #ccc; padding: 10px;text-align: center;color:red;font-size:16px;margin-top:20px;font-weight:bold&quot;&gt;没有数据&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>3、初始化echarts的配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">var myChart = echarts.init(document.getElementById(&apos;line&apos;),&quot;light&quot;);</span><br><span class="line">var lineOption = &#123;</span><br><span class="line">	title : &#123;</span><br><span class="line">		text : &apos;&apos;,</span><br><span class="line">		subtext : &apos;&apos;</span><br><span class="line">	&#125;,</span><br><span class="line">	tooltip : &#123;</span><br><span class="line">		trigger : &apos;axis&apos; //item 在哪条线上显示哪条线上的数据，axis点在哪个坐标点上显示对于点上所有数据</span><br><span class="line">&#125;,</span><br><span class="line">legend : &#123;</span><br><span class="line">	data : []</span><br><span class="line">&#125;,</span><br><span class="line">toolbox : &#123; //可视化的工具箱</span><br><span class="line">		show : true,</span><br><span class="line">		feature : &#123;</span><br><span class="line">			dataView : &#123; //数据视图</span><br><span class="line">				show : true</span><br><span class="line">			&#125;,</span><br><span class="line">			restore : &#123; //重置</span><br><span class="line">				show : true</span><br><span class="line">			&#125;,</span><br><span class="line">			dataZoom : &#123; //数据缩放视图</span><br><span class="line">				show : true</span><br><span class="line">			&#125;,</span><br><span class="line">			saveAsImage : &#123;//保存图片</span><br><span class="line">				show : true</span><br><span class="line">			&#125;,</span><br><span class="line">			magicType : &#123;//动态类型切换</span><br><span class="line">				type : [ &apos;bar&apos;, &apos;line&apos; ]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	calculable : true,</span><br><span class="line">	xAxis : [ &#123;</span><br><span class="line">		type : &apos;category&apos;,</span><br><span class="line">		boundaryGap : false,</span><br><span class="line">		data : []</span><br><span class="line">	&#125; ],</span><br><span class="line">	yAxis : [ &#123;</span><br><span class="line">		type : &apos;value&apos;,</span><br><span class="line">		axisLabel : &#123;</span><br><span class="line">			formatter : &apos;&#123;value&#125; &apos;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; ],</span><br><span class="line">	series : []</span><br><span class="line">&#125;;</span><br><span class="line">myChart.setOption(lineOption);</span><br></pre></td></tr></table></figure>
+<p>4、请求具体的统计数据，并更新echarts中的动态数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function queryData() &#123;</span><br><span class="line">	$(&quot;#line&quot;).show();</span><br><span class="line">	$(&quot;#noData&quot;).hide();</span><br><span class="line">		$.ajax( &#123;</span><br><span class="line">		url : &apos;$&#123;appPath&#125;/btb/sta/fsta0010_getLineImage.st&apos;,</span><br><span class="line">		data : &#123;&#125;,</span><br><span class="line">		method : &quot;POST&quot;,</span><br><span class="line">		dataType : &apos;json&apos;,</span><br><span class="line">		success : function(data) &#123;</span><br><span class="line">		//请求成功时处理</span><br><span class="line">		var data = JSON.stringify(data.resultDataMap);</span><br><span class="line">		var responseText = eval(&apos;(&apos; + data + &apos;)&apos;);</span><br><span class="line">		lineOption.legend.data = responseText.legend;</span><br><span class="line">		lineOption.xAxis[0].data = responseText.xAxis;</span><br><span class="line">		var serieslist = responseText.series;</span><br><span class="line">		if(serieslist.length &gt; 0)&#123;</span><br><span class="line">			for ( var i = 0; i &lt; serieslist.length; i++) &#123;</span><br><span class="line">				lineOption.series[i] = serieslist[i];</span><br><span class="line">		    &#125;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			$(&quot;#line&quot;).hide();</span><br><span class="line">	        $(&quot;#noData&quot;).show();</span><br><span class="line">		&#125;</span><br><span class="line">		myChart.setOption(lineOption, true);</span><br><span class="line">	&#125;,</span><br><span class="line">	complete : function() &#123;</span><br><span class="line">		//请求完成的处理</span><br><span class="line">	&#125;,</span><br><span class="line">	error : function() &#123;</span><br><span class="line">		//请求出错处理</span><br><span class="line">		com_div_msg(&quot;加载失败&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    //相关页面初始化的处理；</span><br><span class="line">    ......</span><br><span class="line">    //查询统计数据</span><br><span class="line">    queryData();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="后台"><a href="#后台" class="headerlink" title="后台"></a>后台</h1><p>在对应的统计的action中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public String getLineImage() &#123;</span><br><span class="line">    List&lt;EchartsEntity&gt; echarts = new ArrayList&lt;EchartsEntity&gt;();</span><br><span class="line">    // 自定义横坐标</span><br><span class="line">    String[] xAxis = &#123; &quot;周一&quot;, &quot;周二&quot;, &quot;周三&quot;, &quot;周四&quot;, &quot;周五&quot;, &quot;周六&quot;, &quot;周日&quot; &#125;;</span><br><span class="line">    // 自定义各种类型的显示数据</span><br><span class="line">    EchartsEntity entity1 = new EchartsEntity(&quot;邮件营销&quot;, &quot;line&quot;, Arrays</span><br><span class="line">    .asList(120, 132, 101, 134, 90, 230, 210));</span><br><span class="line">    EchartsEntity entity2 = new EchartsEntity(&quot;联盟广告&quot;, &quot;line&quot;, Arrays</span><br><span class="line">    .asList(220, 182, 191, 234, 290, 330, 310));</span><br><span class="line">    EchartsEntity entity3 = new EchartsEntity(&quot;视频广告&quot;, &quot;line&quot;, Arrays</span><br><span class="line">    .asList(150, 232, 201, 154, 190, 330, 410));</span><br><span class="line">    echarts.add(entity1);</span><br><span class="line">    echarts.add(entity2);</span><br><span class="line">    echarts.add(entity3);</span><br><span class="line">    String[] legend = &#123; &quot;邮件营销&quot;, &quot;联盟广告&quot;, &quot;视频广告&quot; &#125;;</span><br><span class="line">    resultDataMap = new HashMap&lt;String, Object&gt;();</span><br><span class="line">    resultDataMap.put(&quot;xAxis&quot;, xAxis);</span><br><span class="line">    resultDataMap.put(&quot;series&quot;, echarts);</span><br><span class="line">    resultDataMap.put(&quot;legend&quot;, legend);</span><br><span class="line">    System.out.println(GsonUtil.getJSONString(resultDataMap));</span><br><span class="line">    return &quot;json&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、EchartsEntity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class EchartsEntity &#123;</span><br><span class="line">    public String name;</span><br><span class="line">    public String type;</span><br><span class="line">    public List&lt;?&gt; data;</span><br><span class="line">    //此处省略get,set方法    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>在对应的strus的配置文件中把后端的resultDataMap 作为json对象返回到页面中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;package name=&quot;btbsta&quot; extends=&quot;base&quot; namespace=&quot;/btb/sta&quot; strict-method-invocation=&quot;false&quot;&gt;	 &lt;action name=&quot;fsta0010_*&quot; method=&quot;&#123;1&#125;&quot; class=&quot;fsta0010Action&quot;&gt;</span><br><span class="line">	 	&lt;result name=&quot;json&quot; type=&quot;json&quot;&gt;</span><br><span class="line">		 		&lt;param name=&quot;includeProperties&quot;&gt;resultDataMap.*&lt;/param&gt;</span><br><span class="line">			&lt;/result&gt;</span><br><span class="line">	 &lt;/action&gt;</span><br><span class="line">&lt;/package&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="示例结果"><a href="#示例结果" class="headerlink" title="示例结果"></a>示例结果</h1><p><img src="/images/plugins/echarts-2.png" alt="avatar"></p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>在有些情况下，为了和自己的系统的主题相适应，我们需要更改ecahrt默认的主题。</p>
+<h3 id="echarts-js自带"><a href="#echarts-js自带" class="headerlink" title="echarts.js自带"></a>echarts.js自带</h3><p>官方自带的主题有default，dark，light。这三种主题是不需要下载的。使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myChart = echarts.init(document.getElementById(&apos;line&apos;), &apos;light&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="官网下载"><a href="#官网下载" class="headerlink" title="官网下载"></a>官网下载</h3><p>echarts中除了自带的三种样式之外，还提供了其他主题。使用的方法如下：</p>
+<p>1、在官网上下载对应的主题文件的js，例如macarons.js。</p>
+<p>2、在页面中引入js。</p>
+<p>3、在初始化echarts配置的时候，加入主题的名称即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myChart = echarts.init(document.getElementById(&apos;line&apos;), &apos;macarons&apos;);</span><br></pre></td></tr></table></figure>
+<p><a href="http://echarts.baidu.com/echarts2/doc/example.html" target="_blank" rel="noopener">echarts2.0版本的使用示例</a></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/07/24/minipogram/使用wxParse解析富文本/" class="next-post btn btn-default" title=''>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs"></span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前期准备"><span class="toc-text">前期准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#页面"><span class="toc-text">页面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后台"><span class="toc-text">后台</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#示例结果"><span class="toc-text">示例结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#更换主题"><span class="toc-text">更换主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#echarts-js自带"><span class="toc-text">echarts.js自带</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#官网下载"><span class="toc-text">官网下载</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

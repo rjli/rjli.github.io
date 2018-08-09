@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>Hello World | Cheryl的博客</title>
+<title>Cheryl的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
@@ -142,9 +142,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Hello World">
+        <h1 id="">
             
-	            Hello World
+	            NO Title!
             
         </h1>
         <div class="post-meta">
@@ -172,7 +172,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/07/12</span>
+            <span class="date-meta">2018/07/24</span>
         </span>
     
 </div>
@@ -182,16 +182,32 @@
     </div>
     
     <div class="post-body post-content">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <hr>
+<p>title:’使用wxParse解析html富文本内容’</p>
+<hr>
+<h1 id="使用wxParse解析html富文本内容"><a href="#使用wxParse解析html富文本内容" class="headerlink" title="使用wxParse解析html富文本内容"></a>使用wxParse解析html富文本内容</h1><p>最近项目上遇到在微信小程序里需要显示新闻内，新闻内容是通过接口读取的服务器中的富文本内容，是html格式的，小程序默认是不支持html格式的内容显示的，那我们需要显示html内容的时候，就可以通过wxParse来实现。 </p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先我们在github上下载<a href="https://github.com/icindy/wxParse" target="_blank" rel="noopener">wxParse</a>。</p>
+<p>下载完之后我们需要用到目录下的wxParse文件夹，把他拷贝到我们的项目目录下src/plugins下面。（这里是使用的是wepy开发的小程序）　　</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>在wxParse 环境搭建好之后，下面是具体的使用步骤</p>
+<ol>
+<li>在对应的app.wpy文件中引入wxParse的样式</li>
+</ol>
+<ol start="2">
+<li><p>需要加载html标签的wpy文件中对应的<script>中引入wxParse</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import WxParse from &quot;../plugins/wxParse/wxParse&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过调用WxParse.wxParse方法来设置html内容</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* WxParse.wxParse(bindName , type, data, target,imagePadding)</span><br><span class="line">* 1.bindName绑定的数据名(必填)</span><br><span class="line">* 2.type可以为html或者md(必填)</span><br><span class="line">* 3.data为传入的具体数据(必填)</span><br><span class="line">* 4.target为Page对象,一般为this(必填)</span><br><span class="line">* 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>具体使用如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">async getGoodsDetail() &#123;</span><br><span class="line">    let that = this;</span><br><span class="line">    const json = await api.goodsDetail(&#123;</span><br><span class="line">      query: &#123;</span><br><span class="line">        pro_id: that.goodsId,</span><br><span class="line">        method:&quot;POST&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    if (json.data.status == 1) &#123;</span><br><span class="line">      that.detail = json.data.pro;</span><br><span class="line">      WxParse.wxParse(&apos;detailInfo&apos;, &apos;html&apos;, that.detail.content, this);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      if (json.data.msg) &#123;</span><br><span class="line">        // tip.error(json.data.msg)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        tip.error(&apos;查看商品失败&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    that.$apply();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>页面中引入模板</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;view style=&quot;height:&#123;&#123;winHeight&#125;&#125;rpx;overflow:hidden&quot;&gt;</span><br><span class="line">    &lt;import src=&quot;../plugins/wxParse/wxParse.wxml&quot; /&gt;</span><br><span class="line">      &lt;view class=&quot;doc&quot;&gt;</span><br><span class="line">        &lt;view class=&quot;wxParse-p&quot;&gt;</span><br><span class="line">          &lt;template is=&quot;wxParse&quot; data=&quot;&#123;&#123;wxParseData:detailInfo.nodes&#125;&#125;&quot;&gt;</span><br><span class="line">          &lt;/template&gt;</span><br><span class="line">        &lt;/view&gt;</span><br><span class="line">      &lt;/view&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line"> &lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="在手机上wxParse解析的内容不显示"><a href="#在手机上wxParse解析的内容不显示" class="headerlink" title="在手机上wxParse解析的内容不显示"></a>在手机上wxParse解析的内容不显示</h2><p>这个是wxparse代码的一个bug,在一些特殊的手机里面，在wxparse/html2json.js中的第112和119行，都有一个<strong>console.dir(</strong>这个函数的使用，把这个函数注释掉，内容就可以正常显示出来了。 </p>
+</script></p></li></ol>
     </div>
 
     <div class="post-footer">
@@ -208,15 +224,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/07/24/minipogram/小程序转发/" class="pre-post btn btn-default" title=''>
+        <a href="/2018/07/31/plugins/echarts/" class="pre-post btn btn-default" title='在项目中使用Echarts'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs"></span>
+            <span class="hidden-xs">在项目中使用Echarts</span>
         </a>
     
     
-        <a href="/2018/07/10/http/http转换成https/" class="next-post btn btn-default" title='java web应用的http请求改成https'>
+        <a href="/2018/07/24/minipogram/小程序转发/" class="next-post btn btn-default" title=''>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">java web应用的http请求改成https</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs"></span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -255,7 +271,7 @@
     <div class="widget">
         <h3 class="title">文章目录</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用wxParse解析html富文本内容"><span class="toc-text">使用wxParse解析html富文本内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用说明"><span class="toc-text">使用说明</span></a></li></ol></li></ol>
         
     </div>
 </aside>
