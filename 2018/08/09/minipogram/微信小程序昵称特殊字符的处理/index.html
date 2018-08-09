@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>微信小程序昵称特殊字符的处理 | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="微信小程序昵称特殊字符的处理">
+            
+	            微信小程序昵称特殊字符的处理
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/小程序">
+            小程序
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/java" title='java'>
+                        java
+                    </a>
+                
+                    <a href="/tags/js" title='js'>
+                        js
+                    </a>
+                
+                    <a href="/tags/base64" title='base64'>
+                        base64
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/08/09</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>​    </p>
+<h1 id="昵称处理"><a href="#昵称处理" class="headerlink" title="昵称处理"></a>昵称处理</h1><p>   在小程序的开发过程中，我们不可避免的需要保存用户昵称，但是小程序中的昵称是支持特殊字符的。有的用户是很喜欢在昵称中加入emoj表情的。所以我们需要解决微信登录时昵称中包含特殊字符，不能存入数据库问题。</p>
+<p>大致思路则是接收到的用户的昵称参数进行编码处理。</p>
+<h2 id="对昵称进行编码"><a href="#对昵称进行编码" class="headerlink" title="对昵称进行编码"></a>对昵称进行编码</h2><ul>
+<li>首先对于获取到的字符串进行加密</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc会员.set昵称(Base64.encodeBase64String(btbUser.getNickName().getBytes(&quot;utf-8&quot;)));</span><br></pre></td></tr></table></figure>
+<p> 数据保存之后的结果如下图所示：</p>
+<p><img src="/images/miniprogram/nickname1.png" alt="avatar"></p>
+<blockquote>
+<p>解码的时候采用：</p>
+<p>nickname = new String(Base64.decodeBase64(nickname.getBytes()), “utf-8”);</p>
+<p>这里不使用这种方式解码的原因是如果是对页面初始化的中集合进行处理的话，需要对取出来的数据在进行一次遍历操作对字符进行处理，过程比较繁琐。</p>
+</blockquote>
+<h2 id="对昵称进行解码"><a href="#对昵称进行解码" class="headerlink" title="对昵称进行解码"></a>对昵称进行解码</h2><p>在后台页面展示时，对字符串进行解码操作，这里采用的是<a href="https://github.com/brix/crypto-js" target="_blank" rel="noopener">crypto-js</a>。（这里试过很多种方法，但是对于包含特殊字符以及中文的编码和解码支持的都不是很好，无法和java、mysql等方式进行衔接）</p>
+<ul>
+<li>首先在github上面下在对应的js , 或者使用npm的方式进行安装.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install crypto-js</span><br></pre></td></tr></table></figure>
+<ul>
+<li>页面中引入相应的js文件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&apos;text/javascript&apos; src=&quot;$&#123;appPath&#125;/common/btb/js/crypto-js.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&apos;text/javascript&apos; src=&quot;$&#123;appPath&#125;/common/btb/js/enc-base64.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>js中定义个一处理昵称的函数：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function formatNickName(data) &#123;	</span><br><span class="line">		if(data)&#123;	</span><br><span class="line">	 		data = base64_decode(data);</span><br><span class="line">			return data;		</span><br><span class="line">		&#125;else&#123;			</span><br><span class="line">			return &quot;&quot;;		</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">//编码</span><br><span class="line">function base64_encode(str)&#123;</span><br><span class="line">	var tempstr=CryptoJS.enc.Utf8.parse($(&quot;#source&quot;).val());</span><br><span class="line">	var base64str=CryptoJS.enc.Base64.stringify(tempstr);</span><br><span class="line">	return 	base64str;</span><br><span class="line">&#125;</span><br><span class="line">//解码</span><br><span class="line">function base64_decode(str)&#123;</span><br><span class="line">	var words  = CryptoJS.enc.Base64.parse(str);</span><br><span class="line">	return words.toString(CryptoJS.enc.Utf8)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在对应列表中加入格式化函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;st:objList id=&quot;fusr0010&quot; tabRowId=&quot;oid&quot; tabSearchId=&quot;fusr0010QuerySearchForm&quot; tabPath=&quot;/btb/usr/fusr0010_query.st&quot;  tabInstanceName=&quot;fusr0010Ap&quot; </span><br><span class="line">	    	    tabRowhandler=&quot;rightHander&quot; tabTitle=&quot;用户管理&quot;  tabPageSize=&quot;7&quot;&gt;</span><br><span class="line">	&lt;st:objListColumn columnDisplay=&quot;昵称&quot; columnName=&quot;昵称&quot; columnSortName=&quot;昵称&quot; columnWidth=&quot;10%&quot; columnProcess=&quot;formatNickName&quot;&gt;&lt;/st:objListColumn&gt;</span><br><span class="line">&lt;/st:objList&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p><img src="/images/miniprogram/nickname2.png" alt="avatar"></p>
+<h1 id="【扩展】"><a href="#【扩展】" class="headerlink" title="【扩展】"></a>【扩展】</h1><p>除了java和js中可以对字符进行处理。在mysql5.6及之后也有提供了响应函数支持。</p>
+<ul>
+<li>to_base64</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select to_base64(&apos;helloworld&apos;);</span><br><span class="line">+-------------------------+</span><br><span class="line">| to_base64(&apos;helloworld&apos;) |</span><br><span class="line">+-------------------------+</span><br><span class="line">| aGVsbG93b3JsZA==        |</span><br><span class="line">+-------------------------+</span><br></pre></td></tr></table></figure>
+<ul>
+<li>from_base64</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select from_base64(&apos;aGVsbG93b3JsZA==&apos;);</span><br><span class="line">+---------------------------------+</span><br><span class="line">| from_base64(&apos;aGVsbG93b3JsZA==&apos;) |</span><br><span class="line">+---------------------------------+</span><br><span class="line">| helloworld                      |</span><br><span class="line">+---------------------------------+</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/08/09/database/mysql/" class="next-post btn btn-default" title='Mysql常见问题及解决'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Mysql常见问题及解决</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#昵称处理"><span class="toc-text">昵称处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对昵称进行编码"><span class="toc-text">对昵称进行编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对昵称进行解码"><span class="toc-text">对昵称进行解码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结果展示"><span class="toc-text">结果展示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#【扩展】"><span class="toc-text">【扩展】</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

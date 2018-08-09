@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>计算两个经纬度之间的距离 | Cheryl的博客</title>
+<title>Mysql常见问题及解决 | Cheryl的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
@@ -142,9 +142,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="计算两个经纬度之间的距离">
+        <h1 id="Mysql常见问题及解决">
             
-	            计算两个经纬度之间的距离
+	            Mysql常见问题及解决
             
         </h1>
         <div class="post-meta">
@@ -163,12 +163,12 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/java" title='java'>
-                        java
+                    <a href="/tags/mysql" title='mysql'>
+                        mysql
                     </a>
                 
-                    <a href="/tags/经纬度" title='经纬度'>
-                        经纬度
+                    <a href="/tags/utf-8" title='utf-8'>
+                        utf-8
                     </a>
                 
             
@@ -180,30 +180,77 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2017/05/10</span>
+            <span class="date-meta">2018/08/09</span>
         </span>
     
 </div>
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>456</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <h1 id="计算两个经纬度之间的距离"><a href="#计算两个经纬度之间的距离" class="headerlink" title="计算两个经纬度之间的距离"></a>计算两个经纬度之间的距离</h1><p>本文使用的是距离公式是有google地图提供的。</p>
-<h3 id="公式说明"><a href="#公式说明" class="headerlink" title="公式说明"></a>公式说明</h3><p> <img src="http://img849.ph.126.net/GNSrkddcKlz3MbknMDS1zA==/2693715527121896352.bmp" alt="关于经纬度求距离 - cza55007 - NO.1.LY"></p>
-<p>对上面的公式解释如下：<br>1.Lat1 Lng1 表示A点经纬度，Lat2 Lng2 表示B点经纬度；<br>2.a=Lat1 – Lat2 为两点纬度之差  b=Lng1 -Lng2 为两点经度之差；<br>3.6378.137为地球半径，单位为千米；<br>计算出来的结果单位为千米，若将半径改为米为单位则计算的结果单位为米。<br>计算精度与谷歌地图的距离精度差不多，相差范围在0.2米以下。</p>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">private static final double EARTH_RADIUS = 6378.137;// 地球半径,单位千米</span><br><span class="line">//将角度换算成弧度</span><br><span class="line">private static double rad(double d) &#123;</span><br><span class="line">	return d * Math.PI / 180.0;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line">* 用来比较是否在规定考勤范围</span><br><span class="line">* @param lat1第一个纬度</span><br><span class="line">* @param lng1第一个经度</span><br><span class="line">* @param lat2第二个纬度</span><br><span class="line">* @param lng2第二个经度</span><br><span class="line">* @return 两个经纬度的距离（km）</span><br><span class="line">*/</span><br><span class="line">public static double getDistance(double lat1, double lng1, double lat2,double lng2) &#123;</span><br><span class="line">    double radLat1 = rad(lat1);</span><br><span class="line">    double radLat2 = rad(lat2);</span><br><span class="line">    double a = radLat1 - radLat2;</span><br><span class="line">    double b = rad(lng1) - rad(lng2);</span><br><span class="line">    double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)</span><br><span class="line">    + Math.cos(radLat1) * Math.cos(radLat2)</span><br><span class="line">    * Math.pow(Math.sin(b / 2), 2)));</span><br><span class="line">    s = s * EARTH_RADIUS;</span><br><span class="line">    //此处加上double类型转换是因为对于在几百的距离差值之前计算为0，无法达到预期效果</span><br><span class="line">    s = (double)Math.round(s * 10000) / 10000;</span><br><span class="line">    s = s * 10000/ 10000;</span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>顺带提一下百度地图提供的计算两地经纬度的方法，很简单的一句话调用，可以自行去看百度地图API试试，计算结果单位：米</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var map = new BMap.Map(&quot;allmap&quot;);</span><br><span class="line">var pointA = new BMap.Point(106.486654,29.490295);  // 点坐标A</span><br><span class="line">var pointB = new BMap.Point(106.581515,29.615467);  // 点坐标B</span><br></pre></td></tr></table></figure>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><a href="https://blog.csdn.net/u011001084/article/details/52980834" target="_blank" rel="noopener">地理空间距离计算及优化</a></li>
-<li><a href="https://blog.csdn.net/b_h_l/article/details/8657040" target="_blank" rel="noopener">根据两点经纬度计算距离</a></li>
+        <h1 id="UTF-8编码字节个数问题"><a href="#UTF-8编码字节个数问题" class="headerlink" title="UTF-8编码字节个数问题"></a>UTF-8编码字节个数问题</h1><p><strong>Incorrect string value: ‘\xF0\x9F…’ for column ‘XXX’ at row 1</strong></p>
+<p>这个问题，原因是UTF-8编码有可能是两个、三个、四个字节。Emoji表情或者某些特殊字符是4个字节，而Mysql的utf8编码最多3个字节，所以数据插不进去。</p>
+<p>【解决方法】</p>
+<ul>
+<li>在mysql的安装目录下找到my.ini,作如下修改：</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server=utf8mb4</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">修改后重启Mysql</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将已经建好的表也转换成utf8mb4</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">更改数据库编码：ALTER DATABASE caitu99 CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;</span><br><span class="line">alter table TABLE_NAME convert to character set utf8mb4 collate utf8mb4_bin; （将TABLE_NAME替换成你的表名）</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改mysql配置文件my.cnf（windows为my.ini） </li>
+</ul>
+<p>my.cnf一般在/etc/my.cnf位置。找到后请在以下三部分里添加如下内容： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[client] </span><br><span class="line">default-character-set = utf8mb4 </span><br><span class="line">[mysql] </span><br><span class="line">default-character-set = utf8mb4</span><br><span class="line">[mysqld] </span><br><span class="line">character-set-client-handshake = FALSE </span><br><span class="line">character-set-server = utf8mb4 </span><br><span class="line">collation-server = utf8mb4_unicode_ci </span><br><span class="line">init_connect=&apos;SET NAMES utf8mb4&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="忽略大小写问题"><a href="#忽略大小写问题" class="headerlink" title="忽略大小写问题"></a>忽略大小写问题</h1><p>在系统运行时，ba_user表实际上是存在的，但是因为mysql大小写的问题，所以在执行服务时找不到对应的表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table &apos;booktobook.BA_User&apos; doesn&apos;t exista</span><br><span class="line">...</span><br><span class="line">com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeQuery(NewProxyPreparedStatement.java:116)</span><br><span class="line">	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:82)</span><br><span class="line">	... 82 more</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看大小写区分<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like &quot;%case%&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果：</p>
+<table>
+<thead>
+<tr>
+<th>Variable_name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lower_case_file_system</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td>lower_case_table_names</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>【注意】</p>
+<p>MYSQL在LINUX下数据库名、表名、列名、别名大小写规则如下：</p>
+<ol>
+<li><p>据库名与表名是严格区分大小写的 </p>
+</li>
+<li><p>表的别名是严格区分大小写的  </p>
+</li>
+<li>列名与列的别名在所有的情况下均是忽略大小写的 </li>
+<li>变量名也是严格区分大小写的  </li>
+</ol>
+<p>【解决办法】</p>
+<ul>
+<li>用ROOT登录，修改/etc/my.cnf 　</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/my.cnf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在[mysqld]下加入一行：lower_case_table_names=1 　　</li>
+<li>重新启动数据库即可</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/mysqld restart</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -221,11 +268,16 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/04/05/minipogram/一、快速搭建小程序/" class="pre-post btn btn-default" title='快速搭建小程序项目'>
+        <a href="/2018/08/09/minipogram/微信小程序昵称特殊字符的处理/" class="pre-post btn btn-default" title='微信小程序昵称特殊字符的处理'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">快速搭建小程序项目</span>
+            <span class="hidden-xs">微信小程序昵称特殊字符的处理</span>
         </a>
     
+    
+        <a href="/2018/07/31/plugins/echarts/" class="next-post btn btn-default" title='在项目中使用Echarts'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">在项目中使用Echarts</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
     
 </div>
 
@@ -263,7 +315,7 @@
     <div class="widget">
         <h3 class="title">文章目录</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#计算两个经纬度之间的距离"><span class="toc-text">计算两个经纬度之间的距离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#公式说明"><span class="toc-text">公式说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码示例"><span class="toc-text">代码示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UTF-8编码字节个数问题"><span class="toc-text">UTF-8编码字节个数问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#忽略大小写问题"><span class="toc-text">忽略大小写问题</span></a></li></ol>
         
     </div>
 </aside>

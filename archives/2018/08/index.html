@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>Cheryl的博客</title>
+<title>归档：2018/8 | Cheryl的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
@@ -139,54 +139,168 @@
         <div class="container">
             <div class="row">
                 <main class="col-md-8 main-content ">
-                    <article class="post">
-    <h1 class="post-head"></h1>
-    <div class="post-body">
-        <h1 id="SpringBoot-——属性配置文件"><a href="#SpringBoot-——属性配置文件" class="headerlink" title="SpringBoot ——属性配置文件"></a>SpringBoot ——属性配置文件</h1><blockquote>
-<p>在SpringBoot中，在<code>pom.xml</code>中引入模块化的<code>Starter POMs</code>。其中各个模块都有自己的默认配置，所以如果不是特殊应用场景，就只需要在<code>application.properties</code>中完成一些属性配置就能开启各模块的应用。</p>
-</blockquote>
-<h2 id="application-porterties文件"><a href="#application-porterties文件" class="headerlink" title="application.porterties文件"></a>application.porterties文件</h2><h3 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h3><h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>在Springboot中，我们可能也需要定义一些自己的使用属性。可以在application.properties中使用如下方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.cheryl.name = Cheryl</span><br><span class="line">com.cheryl.password = 123456</span><br></pre></td></tr></table></figure>
-<p>然后再实体类中，使用@ConfigurationProperties(prefix = “com.cheryl”)把当前前前缀下面的注解引入进来。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@ConfigurationProperties(prefix = &quot;com.cheryl&quot;)</span><br><span class="line">public class BlogProperties &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String password;</span><br><span class="line">    //此处省略get,set方法</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>然后再控制器中使用 @Autowired把实体类注入到容器中，然后启动程序在浏览器中访问对应的路径即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/blogPropertiesController&quot;)</span><br><span class="line">public class BlogPropertiesController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private BlogProperties blogProperties;</span><br><span class="line">    </span><br><span class="line">    @GetMapping(&quot;/info&quot;)</span><br><span class="line">    public String blogInfo()&#123;</span><br><span class="line">        return blogProperties.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="参数间的引用"><a href="#参数间的引用" class="headerlink" title="参数间的引用"></a>参数间的引用</h4><p>在<code>application.properties</code>中的各个参数之间也可以直接引用来使用。使用‘${xxx}’的方式来引用定义过自定义属性，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.cheryl.title = &quot;springboot技术实战&quot;</span><br><span class="line">com.cheryl.desc = $&#123;com.cheryl.name&#125;正在学习《$&#123;com.cheryl.title&#125;》</span><br></pre></td></tr></table></figure>
-<p>最后该值为Cheryl正在学习《springboot技术实战》</p>
-<h4 id="生成随机数"><a href="#生成随机数" class="headerlink" title="生成随机数"></a>生成随机数</h4><p>在有一些情况中，我们希望一些属性使用随机值而不是一个固定的值，比如密钥等。Spring Boot的属性配置文件中可以通过<code>${random}</code>来产生int值、long值或者string字符串，来支持属性的随机值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 随机字符串（32位的随机字符串）</span><br><span class="line">com.cheryl.value=$&#123;random.value&#125;</span><br><span class="line"># 随机int</span><br><span class="line">com.cheryl.number=$&#123;random.int&#125;</span><br><span class="line"># 随机long</span><br><span class="line">com.cheryl.bignumber=$&#123;random.long&#125;</span><br><span class="line"># 10以内的随机数</span><br><span class="line">com.cheryl.test1=$&#123;random.int(10)&#125;</span><br><span class="line"># 10-20的随机数</span><br><span class="line">com.cheryl.test2=$&#123;random.int[10,20]&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h2><p>我们在开发Spring Boot应用时，通常会被应用和安装到几个不同的环境，比如：开发、测试、生产等。其中每个环境的数据库地址、服务器端口等等配置都会不同，如果在为不同环境打包时都要修改配置文件的话，比较繁琐，而且容易出错。</p>
-<p>一般来说多环境的配置使用各种项目构建工具或是框架的基本思路是一致的，通过配置多份不同环境的配置文件，再通过打包命令指定需要打包的内容之后进行区分打包，Spring Boot也不例外。</p>
-<p>在Spring Boot中多环境配置文件名需要满足<code>application-{profile}.properties</code>的格式，其中<code>{profile}</code>对应你的环境标识，比如：</p>
-<ul>
-<li><code>application-dev.properties</code>：开发环境</li>
-<li><code>application-test.properties</code>：测试环境</li>
-<li><code>application-prod.properties</code>：生产环境</li>
-</ul>
-<p>至于哪个具体的配置文件会被加载，需要在<code>application.properties</code>文件中通过<code>spring.profiles.active</code>属性来设置，其值对应<code>{profile}</code>值。</p>
-<p>如：<code>spring.profiles.active=test</code>就会加载<code>application-test.properties</code>配置文件内容</p>
-<p>下面，以不同环境配置不同的服务端口为例，进行样例实验。</p>
-<ul>
-<li>针对各环境新建不同的配置文件<code>application-dev.properties</code>、<code>application-test.properties</code>、<code>application-prod.properties</code></li>
-<li>在这三个文件均都设置不同的<code>server.port</code>属性，如：dev环境设置为82，test环境设置为83，prod环境设置为80</li>
-<li>application.properties中设置<code>spring.profiles.active=dev</code>，就是说默认以dev环境设置</li>
-<li>测试不同配置的加载<ul>
-<li>执行<code>java -jar xxx.jar</code>，可以观察到服务端口被设置为<code>1111</code>，也就是默认的开发环境（dev）</li>
-<li>执行<code>java -jar xxx.jar --spring.profiles.active=test</code>，可以观察到服务端口被设置为<code>2222</code>，也就是测试环境的配置（test）</li>
-<li>执行<code>java -jar xxx.jar --spring.profiles.active=prod</code>，可以观察到服务端口被设置为<code>3333</code>，也就是生产环境的配置（prod）</li>
-</ul>
-</li>
-</ul>
-<p>按照上面的实验，可以如下总结多环境的配置思路：</p>
-<ul>
-<li><code>application.properties</code>中配置通用内容，并设置<code>spring.profiles.active=dev</code>，以开发环境为默认配置</li>
-<li><code>application-{profile}.properties</code>中配置各个环境不同的内容</li>
-<li>通过命令行方式去激活不同环境的配置</li>
-</ul>
-
+                    <div id="main">
+     <div class="timebox">
+          <div class="timeline">
+              <ul>
+                
+                
+                    
+                    
+                        
+                            
+                            <h2>2018</h2>
+                        
+                        
+                          <li class="">
+                        
+                            <h3>
+                              09<span>08月</span>
+                            </h3>
+                            <a href="/2018/08/09/minipogram/微信小程序昵称特殊字符的处理/" title="微信小程序昵称特殊字符的处理" target="_blank">微信小程序昵称特殊字符的处理</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="">
+                        
+                            <h3>
+                              09<span>08月</span>
+                            </h3>
+                            <a href="/2018/08/09/database/mysql/" title="Mysql常见问题及解决" target="_blank">Mysql常见问题及解决</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              31<span>07月</span>
+                            </h3>
+                            <a href="/2018/07/31/plugins/echarts/" title="在项目中使用Echarts" target="_blank">在项目中使用Echarts</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              24<span>07月</span>
+                            </h3>
+                            <a href="/2018/07/24/minipogram/使用wxParse解析富文本/" title="" target="_blank"></a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              24<span>07月</span>
+                            </h3>
+                            <a href="/2018/07/24/minipogram/小程序转发/" title="" target="_blank"></a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              10<span>07月</span>
+                            </h3>
+                            <a href="/2018/07/10/video/实时视屏播放的简单实现/" title="实时视屏播放的简单实现" target="_blank">实时视屏播放的简单实现</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              10<span>07月</span>
+                            </h3>
+                            <a href="/2018/07/10/http/http转换成https/" title="java web应用的http请求改成https" target="_blank">java web应用的http请求改成https</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              09<span>07月</span>
+                            </h3>
+                            <a href="/2018/07/09/tomcat/tomcat设置自动启动/" title="Tomcat配置定时启动" target="_blank">Tomcat配置定时启动</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              10<span>05月</span>
+                            </h3>
+                            <a href="/2018/05/10/createblogbyhexo/" title="使用GitHub+Hexo搭建免费博客" target="_blank">使用GitHub+Hexo搭建免费博客</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              12<span>04月</span>
+                            </h3>
+                            <a href="/2018/04/12/first-bolg/" title="Stream API" target="_blank">Stream API</a>
+                        </li>
+                    
+                
+                    
+                    
+                        
+                        
+                          <li class="hide">
+                        
+                            <h3>
+                              05<span>04月</span>
+                            </h3>
+                            <a href="/2018/04/05/minipogram/一、快速搭建小程序/" title="快速搭建小程序项目" target="_blank">快速搭建小程序项目</a>
+                        </li>
+                    
+                
+                    
+                    
+                
+              </ul>
+          </div>
     </div>
-</article>
+</div>
+
+
+
                 </main>
                 
                     
