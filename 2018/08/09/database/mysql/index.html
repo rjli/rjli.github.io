@@ -251,6 +251,16 @@
 <li>重新启动数据库即可</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/mysqld restart</span><br></pre></td></tr></table></figure>
+<h1 id="链接超时问题"><a href="#链接超时问题" class="headerlink" title="链接超时问题"></a>链接超时问题</h1><p>使用Connector/J连接MySQL数据库，程序运行较长时间后就会报以下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Communications link failure，The last packet successfully received from the server was * millisecond ago.The last packet successfully sent to the server was *  millisecond ago。</span><br></pre></td></tr></table></figure>
+<p>【原因】</p>
+<p>MySQL服务器默认的“wait_timeout”是28800秒即8小时，意味着如果一个连接的空闲时间超过8个小时，MySQL将自动断开该连接，而连接池却认为该连接还是有效的(因为并未校验连接的有效性)，当应用申请使用该连接时，就会导致上面的报错。</p>
+<p>【解决】</p>
+<p>修改数据库的wait_timeout最大为31536000即1年，在my.cnf中加入：</p>
+<p>[mysqld]</p>
+<p>wait_timeout=31536000</p>
+<p>interactive_timeout=31536000</p>
+<p>重启生效，需要同时修改这两个参数。</p>
 
     </div>
 
@@ -274,9 +284,9 @@
         </a>
     
     
-        <a href="/2018/07/31/plugins/echarts/" class="next-post btn btn-default" title='在项目中使用Echarts'>
+        <a href="/2018/08/06/minipogram/使用wxParse解析富文本/" class="next-post btn btn-default" title='使用wxParse解析html富文本内容'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">在项目中使用Echarts</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">使用wxParse解析html富文本内容</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -315,7 +325,7 @@
     <div class="widget">
         <h3 class="title">文章目录</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UTF-8编码字节个数问题"><span class="toc-text">UTF-8编码字节个数问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#忽略大小写问题"><span class="toc-text">忽略大小写问题</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UTF-8编码字节个数问题"><span class="toc-text">UTF-8编码字节个数问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#忽略大小写问题"><span class="toc-text">忽略大小写问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#链接超时问题"><span class="toc-text">链接超时问题</span></a></li></ol>
         
     </div>
 </aside>

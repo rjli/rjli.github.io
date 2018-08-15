@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>git 命令 | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="git 命令">
+            
+	            git 命令
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/其他">
+            其他
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/版本管理 git" title='版本管理 git'>
+                        版本管理 git
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/03/06</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="初始化本地仓库"><a href="#初始化本地仓库" class="headerlink" title="初始化本地仓库"></a>初始化本地仓库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://github.com/xx/xx.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在github上面创建远程仓库的时候，不要创建readme.md,即可用上述命令创建成功</p>
+</blockquote>
+<p>【问题】</p>
+<ul>
+<li>因为本地创建了readme.md，导致提交的时候造成了冲突</li>
+</ul>
+<h2 id="gitignore文件"><a href="#gitignore文件" class="headerlink" title="gitignore文件"></a>gitignore文件</h2><ul>
+<li><p>项目初始化的时候添加.gitignore</p>
+<p>因为是点开头，没有文件名，没办法直接在windows目录下直接创建，必须通过右键Git Bash，按照linux的方式来新建.gitignore文件。具体步骤如下：</p>
+<ol>
+<li>在需要创建 .gitignore 文件的文件夹, 右键选择Git Bash 进入命令行，进入项目所在目录。</li>
+<li>输入 touch .gitignore 在文件夹就生成了一个“.gitignore”文件。</li>
+<li>然后在”.gitignore” 文件里输入你要忽略的文件夹及其文件就可以了。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>在添加.gitignore文件的时候，参照 <a href="https://blog.csdn.net/qq_34581118/article/details/78437992?locationNum=4&amp;fps=1" target="_blank" rel="noopener">gitignore 原则</a></p>
+</blockquote>
+<h1 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h1><h2 id="查看commits"><a href="#查看commits" class="headerlink" title="查看commits"></a>查看commits</h2><p><strong>commits</strong>，它在git中扮演了一个重要角色，我们平常用的一些操作git clone ,git commit 都会产生commits，通俗的讲这个就是版本号。使用如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+<h1 id="回退"><a href="#回退" class="headerlink" title="回退"></a>回退</h1><h2 id="push-成功后回退"><a href="#push-成功后回退" class="headerlink" title="push 成功后回退"></a>push 成功后回退</h2><p>我们在使用Git进行版本控制时，有可能会出现这种情况。git push后发现提交的内容不是想要的，这时候我们怎么做呢，提交上去的内容是没有删除按钮的（比如github，或码云）。所以我们需要一些手段将提交上去内容撤销下来。 </p>
+<h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><p>首先将本地的内容回退到自己想要的版本。回退版本我一般使用。在这里我们要明确的一点是git reset可以看成不产生commits，只是改变了当前HEAD指向的commits。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset</span><br></pre></td></tr></table></figure>
+<p>其中这条命令中又分为两种 </p>
+<ul>
+<li><p>git reset –sort</p>
+</li>
+<li><p>git reset –hard</p>
+</li>
+</ul>
+<p>  前者表示只是改变了HEAD的指向，本地代码不会变化，我们使用git status依然可以看到，同时也可以git commit提交。</p>
+<p>​    后者直接回改变本地源码，不仅仅指向变化了，代码也回到了那个版本时的代码，所以使用是一定要小心，想清楚。 </p>
+<p>  如果只是回退到上个版本可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset -–soft xx版本号xxxx </span><br><span class="line">git reset –-hard xx版本号xxx</span><br></pre></td></tr></table></figure>
+<p>也可以使用下面的命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset –soft HEAD~1 </span><br><span class="line">git reset –hard HEAD~1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>因为前面说了HEAD就代表当前，所以上一个版本其实就是当前-1</p>
+</blockquote>
+<p>当我们使用下面的命令时，发现并没有发生什么变化，因为HEAD表示的就是当前版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD</span><br></pre></td></tr></table></figure>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote>
+<p>git reset –soft HEAD~1</p>
+</blockquote>
+<p>   我们可以知道其实HEAD已经指向上一个commits了，我们可以是用git reflog验证下</p>
+<p>   我们再使用git status看看，发现没，代码还在缓存区中 </p>
+<p>   这时候就好办了，我们选择很多，可以直接修改代码，再commit，也可以取消git add 命令，指令如下</p>
+<blockquote>
+<p>git rm –cached xxx文件名xxx<br>git rm</p>
+</blockquote>
+<p>   至于这两者的区别看这里吧<a href="https://broadeno.wordpress.com/2008/10/27/git%E4%BB%A3%E7%A0%81%E5%9C%A8git-add%E4%B9%8B%E5%90%8E%E5%A6%82%E4%BD%95%E5%8F%96%E6%B6%88/" target="_blank" rel="noopener">[GIT]代码在GIT ADD之后如何取消</a><br>   ok 到现在为止，本地的版本已经达到我们想要的了，现在只需要改变远程仓库的版本了，对的，我们只需要在git commit 后，再使用 git push origin 分支名 就可以将新的代码覆盖掉远程仓库版本代码，这样子就达到了撤销远程仓库代码一样的效果，但是这里有点点问题，先接着看吧 </p>
+<p>提交失败，因为当前分支的版本低于远程分支的版本，所以要想覆盖掉它，必须使用force</p>
+<blockquote>
+<p>git push origin 分支 –force<br>ok，大功告成</p>
+</blockquote>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>把分支推送到远端</p>
+<p><a href="https://blog.csdn.net/kakadiablo/article/details/79517985" target="_blank" rel="noopener">https://blog.csdn.net/kakadiablo/article/details/79517985</a></p>
+<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><ul>
+<li>删除本地分支</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D &lt;BranchName&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除远程分支</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete &lt;BranchName&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h3><ul>
+<li>使用如下git命令查看所有远程分支：</li>
+</ul>
+<p><code>git branch -r</code></p>
+<ul>
+<li>查看远程和本地所有分支：</li>
+</ul>
+<p><code>git branch -a</code></p>
+<blockquote>
+<p>其中远程分支是红色的</p>
+</blockquote>
+<ul>
+<li>查看本地分支 </li>
+</ul>
+<p><code>git branch</code> </p>
+<blockquote>
+<p>在输出结果中，前面带<code>*</code> 的是当前分支。</p>
+</blockquote>
+<h3 id="拉取远程分支并创建本地分支"><a href="#拉取远程分支并创建本地分支" class="headerlink" title="拉取远程分支并创建本地分支"></a>拉取远程分支并创建本地分支</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>使用如下命令：</p>
+<p><code>git checkout -b 本地分支名x origin/远程分支名x</code></p>
+<p>使用该方式会在本地新建分支x，并自动切换到该本地分支x。</p>
+<p>采用此种方法建立的本地分支会和远程分支建立映射关系。</p>
+<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>使用如下命令：</p>
+<p><code>git fetch origin 远程分支名x:本地分支名x</code></p>
+<p>使用该方式会在本地新建分支x，但是不会自动切换到该本地分支x，需要手动checkout。</p>
+<p>采用此种方法建立的本地分支不会和远程分支建立映射关系。</p>
+<h3 id="本地分支和远程分支"><a href="#本地分支和远程分支" class="headerlink" title="本地分支和远程分支"></a>本地分支和远程分支</h3><p><a href="https://blog.csdn.net/carfge/article/details/79691360" target="_blank" rel="noopener">https://blog.csdn.net/carfge/article/details/79691360</a></p>
+<h4 id="建立映射关系的作用"><a href="#建立映射关系的作用" class="headerlink" title="建立映射关系的作用"></a>建立映射关系的作用</h4><h4 id="建立映射关系（或者为跟踪关系track）。"><a href="#建立映射关系（或者为跟踪关系track）。" class="headerlink" title="建立映射关系（或者为跟踪关系track）。"></a>建立映射关系（或者为跟踪关系track）。</h4><p>这样使用git pull或者git push时就不必每次都要指定从远程的哪个分支拉取合并和推送到远程的哪个分支了。<br><code>git branch -vv</code><br>输出：<br><img src="https://img-blog.csdn.net/20180208101910427?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmd4aWFveWFuZzA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>上面的本地分支和远程分支都有映射关系，如果没有，就需要手动建立：<br><code>git branch -u origin/分支名</code>，<br>或者<br><code>git branch --set-upstream-to origin/分支名</code><br><code>origin</code> 为git地址的标志，可以建立当前分支与远程分支的映射关系。</p>
+<h4 id="撤销本映射关系"><a href="#撤销本映射关系" class="headerlink" title="撤销本映射关系"></a>撤销本映射关系</h4><p><code>git branch --unset-upstream</code><br>之后可以再次用<code>git branch -vv</code> 查看本地分支和远程分支映射关系</p>
+<h4 id="本地分支只能跟踪远程的同名分支吗"><a href="#本地分支只能跟踪远程的同名分支吗" class="headerlink" title="本地分支只能跟踪远程的同名分支吗"></a>本地分支只能跟踪远程的同名分支吗</h4><ul>
+<li>答案是否定的，本地分支可以与远程不同名的分支建立映射关系</li>
+</ul>
+<p>​       操作和之前的一样，只是可以指定和本地分支名不同的远程分支名，然后使用<code>git branch -vv</code> 查看映射关系，可以发现建立映射成功。</p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="远程库‘origin’不存在"><a href="#远程库‘origin’不存在" class="headerlink" title="远程库‘origin’不存在"></a>远程库‘origin’不存在</h2><p> 【 问题描述】</p>
+<blockquote>
+<p>  fatal: ‘origin’ does not appear to be a git repository</p>
+<p>​    fatal: Could not read from remote repository.</p>
+<p>​    Please make sure you have the correct access rights and the repository exists.</p>
+</blockquote>
+<p>  【 解决方案】</p>
+<ul>
+<li><p>首先,检查你的起源是设定的运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>​                         </p>
+</li>
+</ul>
+<p>​                           显示<br>                         orgin    <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:chaorwin/chaorwin.git (fetch)<br>                         orgin    <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:chaorwin/chaorwin.git (push)<br>                          “origin” 不存在</p>
+<p>​                       2.重命名它,或改变URL,删除它,然后添加正确的一个。</p>
+<p>​                            git remote remove orgin</p>
+<p>​                      3. 增加一个</p>
+<p>​                            git remot add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:chaorwin/chaorwin.git</p>
+<p>​                      4. git push origin master</p>
+<h2 id="文件大小超过限制"><a href="#文件大小超过限制" class="headerlink" title="文件大小超过限制"></a>文件大小超过限制</h2><p>问题描述: </p>
+<blockquote>
+<p> github RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054</p>
+</blockquote>
+<p>出现此问题有可能是上传大小限制<br>执行如下命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config http.postBuffer 524288000</span><br><span class="line">//524288000算法： 1024*1024*500(500M)</span><br></pre></td></tr></table></figure>
+<p>在更改了文件大小之后，可能会出现如下错误：</p>
+<blockquote>
+<p> curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL</p>
+</blockquote>
+<p>因为服务器的SSL证书没有经过第三方机构的签署，所以才报错。解决方案如下：<br>第一步，克隆远程仓库时，用env命令设置GIT_SSL_NO_VERIFY环境变量为”ture”，并同时调用正常的git clone命令。完整的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">env GIT_SSL_NO_VERIFY=true git clone https://&lt;host_name/git/project.git</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+<p>第二步，在克隆完毕的仓库中将http.sslVerify设置为”false”。完整的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><a href="http://img.blog.csdn.net/20160613140756568" target="_blank" rel="noopener">git常见命令思维导图</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/05/minipogram/一、快速搭建小程序/" class="pre-post btn btn-default" title='快速搭建小程序项目'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">快速搭建小程序项目</span>
+        </a>
+    
+    
+        <a href="/2017/05/10/map/java计算两个经纬度之间的距离/" class="next-post btn btn-default" title='计算两个经纬度之间的距离'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">计算两个经纬度之间的距离</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#初始化本地仓库"><span class="toc-text">初始化本地仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore文件"><span class="toc-text">gitignore文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看"><span class="toc-text">查看</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看commits"><span class="toc-text">查看commits</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#回退"><span class="toc-text">回退</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#push-成功后回退"><span class="toc-text">push 成功后回退</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令详解"><span class="toc-text">命令详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支"><span class="toc-text">分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建分支"><span class="toc-text">创建分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除分支"><span class="toc-text">删除分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看远程分支"><span class="toc-text">查看远程分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取远程分支并创建本地分支"><span class="toc-text">拉取远程分支并创建本地分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法一"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式二"><span class="toc-text">方式二</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地分支和远程分支"><span class="toc-text">本地分支和远程分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#建立映射关系的作用"><span class="toc-text">建立映射关系的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建立映射关系（或者为跟踪关系track）。"><span class="toc-text">建立映射关系（或者为跟踪关系track）。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#撤销本映射关系"><span class="toc-text">撤销本映射关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本地分支只能跟踪远程的同名分支吗"><span class="toc-text">本地分支只能跟踪远程的同名分支吗</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见问题"><span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#远程库‘origin’不存在"><span class="toc-text">远程库‘origin’不存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件大小超过限制"><span class="toc-text">文件大小超过限制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
