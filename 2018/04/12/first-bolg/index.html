@@ -14,6 +14,20 @@
     <meta name="browsermode" content="application">
     <meta name="screen-orientation" content="portrait">
     <link rel="dns-prefetch" href="http://yoursite.com">
+	<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+		.pace .pace-progress {
+			background: #1E92FB; /*进度条颜色*/
+			height: 3px;
+		}
+		.pace .pace-progress-inner {
+			 box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+		}
+		.pace .pace-activity {
+			border-top-color: #1E92FB;    /*上边框颜色*/
+			border-left-color: #1E92FB;    /*左边框颜色*/
+		}
+	</style>
     <!--SEO-->
 
 
@@ -65,7 +79,10 @@
 	});
 	daovoice('update');
 	 </script>
+	 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	
 
+    
 </head>
 
 
@@ -637,9 +654,9 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/05/10/createblogbyhexo/" class="pre-post btn btn-default" title='使用GitHub+Hexo搭建免费博客'>
+        <a href="/2018/05/10/video/ffmpeg简介/" class="pre-post btn btn-default" title='FFMPEG简介'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">使用GitHub+Hexo搭建免费博客</span>
+            <span class="hidden-xs">FFMPEG简介</span>
         </a>
     
     
@@ -682,10 +699,12 @@
                 
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
-        <h3 class="title">文章目录</h3>
-        
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Stream-API"><span class="toc-text">Stream API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、什么是-Stream"><span class="toc-text">一、什么是 Stream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Stream操作的三个步骤"><span class="toc-text">二、Stream操作的三个步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-创建stream"><span class="toc-text">2.1 创建stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-中间操作"><span class="toc-text">2.2 中间操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-终止操作"><span class="toc-text">2.3 终止操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、创建Stream的四种方式"><span class="toc-text">三、创建Stream的四种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-由Collection创建流"><span class="toc-text">3.1 由Collection创建流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-由数组创建流"><span class="toc-text">3.2 由数组创建流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-由值创建流"><span class="toc-text">3.3 由值创建流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-由函数创建流"><span class="toc-text">3.4 由函数创建流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Stream的中间操作"><span class="toc-text">四、Stream的中间操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-筛选与切片"><span class="toc-text">4.1 筛选与切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-映射"><span class="toc-text">4.2 映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-排序"><span class="toc-text">4.3 排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、-Stream的终止操作"><span class="toc-text">五、 Stream的终止操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-查找与匹配"><span class="toc-text">5.1 查找与匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-归约"><span class="toc-text">5.2 归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-收集"><span class="toc-text">5.3 收集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
-        
+        <h3 class="title" >文章目录</h3>
+		 
+			 
+				<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Stream-API"><span class="toc-text">Stream API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、什么是-Stream"><span class="toc-text">一、什么是 Stream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Stream操作的三个步骤"><span class="toc-text">二、Stream操作的三个步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-创建stream"><span class="toc-text">2.1 创建stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-中间操作"><span class="toc-text">2.2 中间操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-终止操作"><span class="toc-text">2.3 终止操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、创建Stream的四种方式"><span class="toc-text">三、创建Stream的四种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-由Collection创建流"><span class="toc-text">3.1 由Collection创建流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-由数组创建流"><span class="toc-text">3.2 由数组创建流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-由值创建流"><span class="toc-text">3.3 由值创建流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-由函数创建流"><span class="toc-text">3.4 由函数创建流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Stream的中间操作"><span class="toc-text">四、Stream的中间操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-筛选与切片"><span class="toc-text">4.1 筛选与切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-映射"><span class="toc-text">4.2 映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-排序"><span class="toc-text">4.3 排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、-Stream的终止操作"><span class="toc-text">五、 Stream的终止操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-查找与匹配"><span class="toc-text">5.1 查找与匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-归约"><span class="toc-text">5.2 归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-收集"><span class="toc-text">5.3 收集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
+			 
+		 
     </div>
 </aside>
 
@@ -706,15 +725,21 @@
 
 
 
-
     <div class="copyright">
     <div class="container">
         <div class="row">
+			<div class="powered-by">
+				<i class="fa fa-user-md"></i>
+				<span id="busuanzi_container_site_uv">
+					本站访客数:<span id="busuanzi_value_site_uv"></span>
+				</span>
+			</div>
             <div class="col-sm-12"> 
+				
                 <span>Copyright &copy; 2018
                 </span> | 
                 <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Cheryl</a>
                 </span> | 
                 <span>
                     Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
@@ -723,7 +748,7 @@
         </div>
     </div>
 </div>
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 	<script src="/js/search.js?rev=@@hash"></script>

@@ -14,6 +14,20 @@
     <meta name="browsermode" content="application">
     <meta name="screen-orientation" content="portrait">
     <link rel="dns-prefetch" href="http://yoursite.com">
+	<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+		.pace .pace-progress {
+			background: #1E92FB; /*进度条颜色*/
+			height: 3px;
+		}
+		.pace .pace-progress-inner {
+			 box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+		}
+		.pace .pace-activity {
+			border-top-color: #1E92FB;    /*上边框颜色*/
+			border-left-color: #1E92FB;    /*左边框颜色*/
+		}
+	</style>
     <!--SEO-->
 
 
@@ -65,7 +79,10 @@
 	});
 	daovoice('update');
 	 </script>
+	 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	
 
+    
 </head>
 
 
@@ -276,7 +293,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/小程序/"><i class="fa" aria-hidden="true">小程序</i></a><span class="category-list-count">4</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/小程序/"><i class="fa" aria-hidden="true">小程序</i></a><span class="category-list-count">5</span></li></ul>
     </div>
 
 
@@ -284,7 +301,7 @@
         
     <div class="widget">
       <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">2018年08月</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">2018年07月</i></a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">2018年05月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">2018年04月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">2018年03月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">2017年05月</i></a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">2018年08月</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">2018年07月</i></a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">2018年05月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">2018年04月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">2018年03月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">2017年05月</i></a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
@@ -293,7 +310,7 @@
   <div class="widget">
     <h3 class="title">标签云</h3>
     <div class="content tag-cloud">
-        <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/echarts/" style="font-size: 10px;">echarts</a> <a href="/tags/ffmpeg/" style="font-size: 10px;">ffmpeg</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 15px;">https</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/js，wxParse/" style="font-size: 10px;">js，wxParse</a> <a href="/tags/js，文件上传/" style="font-size: 10px;">js，文件上传</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/ssh/" style="font-size: 15px;">ssh</a> <a href="/tags/tomcat-java/" style="font-size: 10px;">tomcat java</a> <a href="/tags/utf-8/" style="font-size: 10px;">utf-8</a> <a href="/tags/版本管理-git/" style="font-size: 10px;">版本管理 git</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/视频/" style="font-size: 10px;">视频</a>
+        <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/echarts/" style="font-size: 10px;">echarts</a> <a href="/tags/ffmpeg/" style="font-size: 15px;">ffmpeg</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 15px;">https</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/js，wxParse/" style="font-size: 10px;">js，wxParse</a> <a href="/tags/js，文件上传/" style="font-size: 10px;">js，文件上传</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/ssh/" style="font-size: 15px;">ssh</a> <a href="/tags/tomcat-java/" style="font-size: 10px;">tomcat java</a> <a href="/tags/utf-8/" style="font-size: 10px;">utf-8</a> <a href="/tags/版本管理-git/" style="font-size: 10px;">版本管理 git</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/视频/" style="font-size: 15px;">视频</a>
     </div>
   </div>
 
@@ -321,15 +338,21 @@
 
 
 
-
     <div class="copyright">
     <div class="container">
         <div class="row">
+			<div class="powered-by">
+				<i class="fa fa-user-md"></i>
+				<span id="busuanzi_container_site_uv">
+					本站访客数:<span id="busuanzi_value_site_uv"></span>
+				</span>
+			</div>
             <div class="col-sm-12"> 
+				
                 <span>Copyright &copy; 2018
                 </span> | 
                 <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Cheryl</a>
                 </span> | 
                 <span>
                     Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
@@ -338,7 +361,7 @@
         </div>
     </div>
 </div>
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 	<script src="/js/search.js?rev=@@hash"></script>

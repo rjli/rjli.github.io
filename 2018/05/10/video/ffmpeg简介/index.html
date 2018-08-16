@@ -14,6 +14,20 @@
     <meta name="browsermode" content="application">
     <meta name="screen-orientation" content="portrait">
     <link rel="dns-prefetch" href="http://yoursite.com">
+	<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+		.pace .pace-progress {
+			background: #1E92FB; /*进度条颜色*/
+			height: 3px;
+		}
+		.pace .pace-progress-inner {
+			 box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+		}
+		.pace .pace-activity {
+			border-top-color: #1E92FB;    /*上边框颜色*/
+			border-left-color: #1E92FB;    /*左边框颜色*/
+		}
+	</style>
     <!--SEO-->
 
 
@@ -27,7 +41,7 @@
     <!--Title-->
 
 
-<title>Cheryl的博客</title>
+<title>FFMPEG简介 | Cheryl的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
@@ -65,7 +79,10 @@
 	});
 	daovoice('update');
 	 </script>
+	 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	
 
+    
 </head>
 
 
@@ -138,11 +155,59 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <article class="post">
-    <h1 class="post-head"></h1>
-    <div class="post-body">
-        <h1 id="FFMPEG"><a href="#FFMPEG" class="headerlink" title="FFMPEG"></a>FFMPEG</h1><h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><p>Fmpeg是用于录制、转换和流化音频和视频的完整解决方案， 包括 libavcodec ，一套领先的音/视频编解码类库。FFmpeg 在Linux上开发，当可以在大多数操作系统下编译，包括Windows。</p>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="FFMPEG简介">
+            
+	            FFMPEG简介
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/后端">
+            后端
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/视频" title='视频'>
+                        视频
+                    </a>
+                
+                    <a href="/tags/ffmpeg" title='ffmpeg'>
+                        ffmpeg
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/10</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><p>Fmpeg是用于录制、转换和流化音频和视频的完整解决方案， 包括 libavcodec ，一套领先的音/视频编解码类库。FFmpeg 在Linux上开发，当可以在大多数操作系统下编译，包括Windows。</p>
 <p>Note</p>
 <ul>
 <li>FFmpeg对GCC的依赖很强，所以就算是在Windows上， 用VC编译FFmpeg也不是一件轻松的事情。请尽量使用 GCC来编译FFmpeg，比较事半功倍。</li>
@@ -256,36 +321,6 @@
 <tr>
 <td>-dframes number</td>
 <td>设置要记录的帧数</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>视屏选项</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -312,110 +347,74 @@ ffmpeg -ss 0:1:30 -t 0:0:20 -i input.avi -vcodec copy -acodec copy output.avi   
 </code></pre><h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p>1.<a href="https://blog.csdn.net/maopig/article/details/6610257" target="_blank" rel="noopener">ffmpeg常用参数一览表</a></p>
 
     </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
 </article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/10/createblogbyhexo/" class="pre-post btn btn-default" title='使用GitHub+Hexo搭建免费博客'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">使用GitHub+Hexo搭建免费博客</span>
+        </a>
+    
+    
+        <a href="/2018/04/12/first-bolg/" class="next-post btn btn-default" title='Stream API'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Stream API</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
                 </main>
                 
-                    
-    <aside class="col-md-4 sidebar">
-        
-        
+                    <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
-        <h3 class="title">搜索</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
-                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
-                
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
+        <h3 class="title" >文章目录</h3>
+		 
+			 
+				<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#功能说明"><span class="toc-text">功能说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包组成结构"><span class="toc-text">包组成结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载使用"><span class="toc-text">下载使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载地址"><span class="toc-text">下载地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffmpeg命令"><span class="toc-text">ffmpeg命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参数介绍"><span class="toc-text">参数介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见错误"><span class="toc-text">常见错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li></ol>
+			 
+		 
     </div>
-
-        
-        
-    <div class="widget notification">
-        <h3 class="title">网站公告</h3>
-        <div>
-            <p>主题Snippet v1.2.1版本已经上线！欢迎更新~ <br/>
-主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
-主题使用：<a href="https://github.com/shenliyang/hexo-theme-snippet/blob/master/README.md#常见问题" title="" target="_blank">常见使用问题</a> <br/>
-<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
-</p>
-        </div>
-    </div>
-
-        
-        
-    <div class="widget">
-      <h3 class="title">社交</h3> 
-        <div class="content social">
-            
-	            <a href="//github.com/shenliyang" rel="external nofollow" title="Github" target="_blank">
-			    	<i class="git fa fa-git"></i>
-			    </a>
-            
-	            <a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank">
-			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
-			    	<i class="qq fa fa-qq"></i>
-			    </a>
-            
-	            <a href="/" rel="external nofollow" title="微信" target="_blank">
-			    	<i class="weixin fa fa-weixin"></i>
-			    </a>
-            
-        </div>
-    </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/小程序/"><i class="fa" aria-hidden="true">小程序</i></a><span class="category-list-count">4</span></li></ul>
-    </div>
-
-
-        
-        
-    <div class="widget">
-      <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">2018年08月</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">2018年07月</i></a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">2018年05月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">2018年04月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">2018年03月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">2017年05月</i></a><span class="archive-list-count">1</span></li></ul>
-    </div>
-
-
-        
-        
-  <div class="widget">
-    <h3 class="title">标签云</h3>
-    <div class="content tag-cloud">
-        <a href="/tags/Java8/" style="font-size: 10px;">Java8</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/echarts/" style="font-size: 10px;">echarts</a> <a href="/tags/ffmpeg/" style="font-size: 10px;">ffmpeg</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 15px;">https</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/js，wxParse/" style="font-size: 10px;">js，wxParse</a> <a href="/tags/js，文件上传/" style="font-size: 10px;">js，文件上传</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/rtmp/" style="font-size: 10px;">rtmp</a> <a href="/tags/ssh/" style="font-size: 15px;">ssh</a> <a href="/tags/tomcat-java/" style="font-size: 10px;">tomcat java</a> <a href="/tags/utf-8/" style="font-size: 10px;">utf-8</a> <a href="/tags/版本管理-git/" style="font-size: 10px;">版本管理 git</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/视频/" style="font-size: 10px;">视频</a>
-    </div>
-  </div>
-
-
-        
-        
-
-        
-    </aside>
+</aside>
 
                 
             </div>
@@ -434,15 +433,21 @@ ffmpeg -ss 0:1:30 -t 0:0:20 -i input.avi -vcodec copy -acodec copy output.avi   
 
 
 
-
     <div class="copyright">
     <div class="container">
         <div class="row">
+			<div class="powered-by">
+				<i class="fa fa-user-md"></i>
+				<span id="busuanzi_container_site_uv">
+					本站访客数:<span id="busuanzi_value_site_uv"></span>
+				</span>
+			</div>
             <div class="col-sm-12"> 
+				
                 <span>Copyright &copy; 2018
                 </span> | 
                 <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Cheryl</a>
                 </span> | 
                 <span>
                     Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
@@ -451,7 +456,7 @@ ffmpeg -ss 0:1:30 -t 0:0:20 -i input.avi -vcodec copy -acodec copy output.avi   
         </div>
     </div>
 </div>
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 	<script src="/js/search.js?rev=@@hash"></script>

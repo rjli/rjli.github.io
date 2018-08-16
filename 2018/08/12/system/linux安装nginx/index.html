@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+	<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+		.pace .pace-progress {
+			background: #1E92FB; /*进度条颜色*/
+			height: 3px;
+		}
+		.pace .pace-progress-inner {
+			 box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+		}
+		.pace .pace-activity {
+			border-top-color: #1E92FB;    /*上边框颜色*/
+			border-left-color: #1E92FB;    /*左边框颜色*/
+		}
+	</style>
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>linux安装nginx | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+	 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="linux安装nginx">
+            
+	            linux安装nginx
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/后端">
+            后端
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/nginx" title='nginx'>
+                        nginx
+                    </a>
+                
+                    <a href="/tags/linux" title='linux'>
+                        linux
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/08/12</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><ul>
+<li><p><code>yum install gcc</code></p>
+</li>
+<li><p><code>yum install pcre-devel</code></p>
+</li>
+<li><code>yum install zlib zlib-devel</code></li>
+<li><code>yum install openssl openssl-devel</code></li>
+<li><p>一键安装上面四个依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="下载nginx的tar包"><a href="#下载nginx的tar包" class="headerlink" title="下载nginx的tar包"></a>下载nginx的tar包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//创建一个文件夹</span><br><span class="line">cd /usr/local</span><br><span class="line">mkdir nginx</span><br><span class="line">cd nginx</span><br><span class="line">//下载tar包</span><br><span class="line">wget http://nginx.org/download/nginx-1.14.0.tar.gz</span><br><span class="line">tar -xvf nginx-1.14.0.tar.g</span><br></pre></td></tr></table></figure>
+<h1 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h1><h2 id="执行-confugure"><a href="#执行-confugure" class="headerlink" title="执行.confugure"></a>执行.confugure</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//进入nginx目录</span><br><span class="line">cd /usr/local/nginx</span><br><span class="line">//执行命令，这步是关键</span><br><span class="line">   ./configure --user=nobody --group=nobody --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_gzip_static_module --with-http_realip_module --with-http_sub_module --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果执行.configure ,如果不加后面的参数的话在配置nginx.conf的时候会报类似这样的错误：</p>
+<p>   nginx: [emerg] unknown directive “ssl” in /usr/local/nginx/conf/vhost/nginx.conf:8<br>   nginx: configuration file /usr/local/nginx/conf/nginx.conf test failed </p>
+</blockquote>
+<h2 id="执行make"><a href="#执行make" class="headerlink" title="执行make"></a>执行make</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<h2 id="执行make-install命令"><a href="#执行make-install命令" class="headerlink" title="执行make install命令"></a>执行make install命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h1 id="Nginx常用命令"><a href="#Nginx常用命令" class="headerlink" title="Nginx常用命令"></a>Nginx常用命令</h1><ul>
+<li><p>测试配置文件</p>
+<figure class="highlight plain"><figcaption><span>-t</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装路径下的/nginx/sbin/nginx -t</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动命令</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装路径下的/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装路径下的/nginx/sbin/nginx -s stop</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>或者 : nginx -s quit</p>
+</blockquote>
+<ul>
+<li>重启命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装路径下的/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查看进程命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>平滑重启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -HUP Nginx主进程号</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//打开防火墙文件</span><br><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line">//新增行  开放80端口</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 90 -j ACCEPT</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//重启防火墙</span><br><span class="line">sudo service iptables restart</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里可以直接使用<code>service iptables stop</code>。 把防火墙关闭了。</p>
+</blockquote>
+<h2 id="Nginx转发配置及测试验证"><a href="#Nginx转发配置及测试验证" class="headerlink" title="Nginx转发配置及测试验证"></a>Nginx转发配置及测试验证</h2><ol>
+<li>编辑conf文件，节点中增加入响应的配置 端口转发</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">listen 443;</span><br><span class="line">server_name www.example.com;</span><br><span class="line">server_name_in_redirect off;  </span><br><span class="line">ssl on;</span><br><span class="line">ssl_certificate   cert/123456.pem;</span><br><span class="line">ssl_certificate_key  cert/123456.key;</span><br><span class="line">ssl_session_timeout 5m;</span><br><span class="line">ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">location /&#123;</span><br><span class="line"> root html;</span><br><span class="line">       index index.html index.htm;</span><br><span class="line">&#125;</span><br><span class="line">location /Example &#123;  </span><br><span class="line">        tcp_nodelay     on;  </span><br><span class="line">        proxy_set_header Host            $host;  </span><br><span class="line">        proxy_set_header X-Real-IP       $remote_addr;  </span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;  </span><br><span class="line">        proxy_pass http://127.0.0.1:90/Example; </span><br><span class="line">&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>测试</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装路径下的/nginx/sbin/nginx -t</span><br></pre></td></tr></table></figure>
+<p>出现如下的提示，则表示安装成功了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful</span><br></pre></td></tr></table></figure>
+<h1 id="Nginx启动"><a href="#Nginx启动" class="headerlink" title="Nginx启动"></a>Nginx启动</h1><ul>
+<li>启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装路径下的/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试访问</li>
+</ul>
+<p><img src="/images/https/nginx1.png" alt="avatar"></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/08/15/http/https经过nginx后struts跳转成http/" class="pre-post btn btn-default" title='https经过nginx后struts跳转成http'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">https经过nginx后struts跳转成http</span>
+        </a>
+    
+    
+        <a href="/2018/08/10/minipogram/小程序多文件上传/" class="next-post btn btn-default" title='小程序多文件上传'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">小程序多文件上传</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title" >文章目录</h3>
+		 
+			 
+				<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装依赖"><span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下载nginx的tar包"><span class="toc-text">下载nginx的tar包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装nginx"><span class="toc-text">安装nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#执行-confugure"><span class="toc-text">执行.confugure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行make"><span class="toc-text">执行make</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行make-install命令"><span class="toc-text">执行make install命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx常用命令"><span class="toc-text">Nginx常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置防火墙"><span class="toc-text">配置防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx转发配置及测试验证"><span class="toc-text">Nginx转发配置及测试验证</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx启动"><span class="toc-text">Nginx启动</span></a></li></ol>
+			 
+		 
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+			<div class="powered-by">
+				<i class="fa fa-user-md"></i>
+				<span id="busuanzi_container_site_uv">
+					本站访客数:<span id="busuanzi_value_site_uv"></span>
+				</span>
+			</div>
+            <div class="col-sm-12"> 
+				
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Cheryl</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
