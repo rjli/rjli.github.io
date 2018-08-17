@@ -180,8 +180,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/js，wxParse" title='js，wxParse'>
-                        js，wxParse
+                    <a href="/tags/wxParse" title='wxParse'>
+                        wxParse
                     </a>
                 
             
@@ -203,8 +203,23 @@
     </div>
     
     <div class="post-body post-content">
-        <p>最近项目上遇到在微信小程序里需要显示新闻内，新闻内容是通过接口读取的服务器中的富文本内容，是html格式的，小程序默认是不支持html格式的内容显示的，那我们需要显示html内容的时候，就可以通过wxParse来实现。 </p>
-<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p><img src="F:\hexo\source\images\miniprogram\fileupload1.png" alt="avatar"> </p>
+        <p>最近项目上遇到在微信小程序里需要显示促销活动内容，促销活动内容是通过接口读取的服务器中的富文本内容，是html格式的，小程序默认是不支持html格式的内容显示的，那我们需要显示html内容的时候，就可以通过wxParse来实现。</p>
+<p><strong>前期准备 </strong></p>
+<ul>
+<li>首先我们在github上下载<a href="https://github.com/icindy/wxParse" target="_blank" rel="noopener">wxParse</a> 。</li>
+<li>下载完之后我们需要用到目录下的wxParse文件夹，把他拷贝到我们的项目目录的plugins下。</li>
+</ul>
+<p><strong>使用步骤 </strong></p>
+<p>在把wxParse添加到我们项目的文件夹之后，我们就可以开始使用了。下面是具体的步骤：</p>
+<p>1.在app.wxss全局样式文件中，需要引入wxParse的样式表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;/page/wxParse/wxParse.wxss&quot;;</span><br></pre></td></tr></table></figure>
+<p>2.在需要加载html内容的页面对应的js文件里引入wxParse</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var WxParse = require(&apos;../../wxParse/wxParse.js&apos;);</span><br></pre></td></tr></table></figure>
+<p>3.通过调用WxParse.wxParse方法来设置html内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* WxParse.wxParse(bindName , type, data, target,imagePadding)</span><br><span class="line">* 1.bindName绑定的数据名(必填)</span><br><span class="line">* 2.type可以为html或者md(必填)</span><br><span class="line">* 3.data为传入的具体数据(必填)</span><br><span class="line">* 4.target为Page对象,一般为this(必填)</span><br><span class="line">* 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)</span><br><span class="line">*/</span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: function () &#123;</span><br><span class="line">    var that = this;</span><br><span class="line">    wx.request(&#123;</span><br><span class="line">        url: &apos;&apos;, </span><br><span class="line">        method: &apos;POST&apos;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            &apos;id&apos;:13</span><br><span class="line">        &#125;,</span><br><span class="line">        header: &#123;</span><br><span class="line">            &apos;content-type&apos;: &apos;application/json&apos;</span><br><span class="line">        &#125;,</span><br><span class="line">        success: function(res) &#123;</span><br><span class="line">            var article = res.data[0].activityContent;</span><br><span class="line">            WxParse.wxParse(&apos;article&apos;, &apos;html&apos;, article, that);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>4.在页面中引用模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;import src=&quot;../../wxParse/wxParse.wxml&quot;/&gt;</span><br><span class="line">&lt;template is=&quot;wxParse&quot; data=&quot;&#123;&#123;wxParseData:article.nodes&#125;&#125;&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>这样就可以在微信小程序中嵌入html内容了。</p>
 
     </div>
 
@@ -270,7 +285,7 @@
         <h3 class="title" >文章目录</h3>
 		 
 			 
-				<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#结果展示"><span class="toc-text">结果展示</span></a></li></ol>
+				<p>暂无目录</p>
 			 
 		 
     </div>

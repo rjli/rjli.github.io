@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+	<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+		.pace .pace-progress {
+			background: #1E92FB; /*进度条颜色*/
+			height: 3px;
+		}
+		.pace .pace-progress-inner {
+			 box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+		}
+		.pace .pace-activity {
+			border-top-color: #1E92FB;    /*上边框颜色*/
+			border-left-color: #1E92FB;    /*左边框颜色*/
+		}
+	</style>
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>小程序自定义组件 | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+	 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="小程序自定义组件">
+            
+	            小程序自定义组件
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/小程序">
+            小程序
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/组件" title='组件'>
+                        组件
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/08/17</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>从小程序基础库版本 1.6.3 开始，小程序支持简洁的组件化编程。开发者可以将页面内的功能模块抽象成自定义组件，以便在不同的页面中重复使用；也可以将复杂的页面拆分成多个低耦合的模块，有助于代码维护。自定义组件在使用时与基础组件非常相似。接下来我们通过创建一个在页面上的弹屏组件，来看一下如何创建并使用一个自定义组件。</p>
+<h1 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a>创建组件</h1><h2 id="声明组件"><a href="#声明组件" class="headerlink" title="声明组件"></a>声明组件</h2><p>类似于页面，一个自定义组件由 <code>json</code> <code>wxml</code> <code>wxss</code> <code>js</code> 4个文件组成。要编写一个自定义组件，<strong>首先需要在 json 文件中进行自定义组件声明</strong>（将 <code>component</code> 字段设为 <code>true</code> 可这一组文件设为自定义组件）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;component&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编写组件模板和样式"><a href="#编写组件模板和样式" class="headerlink" title="编写组件模板和样式"></a>编写组件模板和样式</h2><p>同时，<strong>还要在 wxml 文件中编写组件模版</strong>，<strong>在 wxss 文件中加入组件样式</strong>，它们的写法与页面的写法类似。详情可参考 <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/wxml-wxss.html" target="_blank" rel="noopener">组件模版和样式</a> 。</p>
+<h2 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h2><ul>
+<li>代码示例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class=&quot;pop-alert-box dialog&quot;&gt;</span><br><span class="line">      &lt;view class=&quot;alert-content-box&quot;&gt;</span><br><span class="line">        &lt;image src=&quot;../../images/icon_alert.jpg&quot; class=&quot;icon-image&quot;&gt;&lt;/image&gt;</span><br><span class="line">        &lt;view class=&quot;alert-content&quot;&gt;</span><br><span class="line">          &lt;!-- &lt;image src=&quot;../../images/icon_alert.jpg&quot; class=&quot;icon_alert_dialog&quot;&gt;&lt;/image&gt; --&gt;</span><br><span class="line">          &lt;view class=&quot;title&quot;&gt;红包大派送&lt;/view&gt;</span><br><span class="line">          &lt;view class=&quot;title-doc&quot;&gt;恭喜您获得&#123;&#123;count&#125;&#125;元红包，快快领取吧&lt;/view&gt;</span><br><span class="line">          &lt;view class=&quot;btn_box&quot;&gt;</span><br><span class="line">            &lt;view class=&quot;button type_red&quot; catchtap=&quot;callback&quot;&gt;立即领取&lt;/view&gt;</span><br><span class="line">          &lt;/view&gt;</span><br><span class="line">        &lt;/view&gt;</span><br><span class="line">      &lt;/view&gt;</span><br><span class="line">      &lt;i class=&quot;iconfont icon-close&quot; catchtap=&quot;close&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">  &lt;view class=&quot;alert_mask&quot; catchtap=&quot;close&quot;&gt;&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 在组件模板中可以提供一个 <strong><slot></slot></strong> 节点，用于承载组件引用时提供的<strong>子节点</strong>。用于承载组件使用者提供的wxml结构。可以使组件的内容更加灵活。</p>
+</blockquote>
+<h2 id="组件样式"><a href="#组件样式" class="headerlink" title="组件样式"></a>组件样式</h2><ul>
+<li>代码示例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">.pop-alert-box &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  width: 550rpx;</span><br><span class="line">  height: 650rpx;</span><br><span class="line">  margin-left: -275rpx;</span><br><span class="line">  top: 20%;</span><br><span class="line">  left: 50%;</span><br><span class="line">  z-index: 2001;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-content-box &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">  position: relative;</span><br><span class="line">  background: #fff;</span><br><span class="line">  border-radius: 10rpx;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-content &#123;</span><br><span class="line">  padding: 20rpx;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 30rpx;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.title &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  color: #ffdd25;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.title-doc &#123;</span><br><span class="line">  padding-top: 20rpx;</span><br><span class="line">  color: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.btn_box &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  /* position: absolute;</span><br><span class="line">  top: 80rpx; */</span><br><span class="line">  padding-top: 40rpx;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.button &#123;</span><br><span class="line">  /* padding: 20rpx 0;</span><br><span class="line">  border-radius: 2%; */</span><br><span class="line">  background: #fff26f;</span><br><span class="line">  padding: 10rpx 20rpx;</span><br><span class="line">  border-radius: 10rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.type_red &#123;</span><br><span class="line">  color: #a04d03;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.icon_alert &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.icon-image &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">  border-radius: 10rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.icon_alert_dialog &#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 200rpx;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.icon-close &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  font-size: 60rpx;</span><br><span class="line">  color: #dedede;</span><br><span class="line">  margin-top: 50rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert_mask &#123;</span><br><span class="line">  background-color: rgba(0, 0, 0, 0.6);</span><br><span class="line">  position: fixed;</span><br><span class="line">  z-index: 2000;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  top: 0;</span><br><span class="line">  display: -webkit-box;</span><br><span class="line">  display: -ms-flexbox;</span><br><span class="line">  display: flex;</span><br><span class="line">  -webkit-box-pack: center;</span><br><span class="line">  -ms-flex-pack: center;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  -webkit-box-align: center;</span><br><span class="line">  -ms-flex-align: center;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：</p>
+<ul>
+<li><p>在组件wxss中<strong>不应使用ID选择器、属性选择器和标签名选择器</strong>。</p>
+</li>
+<li><p>组件和引用组件的页面中使用后<strong>代选择器（.a .b）</strong>在一些极端情况下会有非预期的表现，如遇，请避免使用。</p>
+</li>
+<li><strong>子元素选择器（.a&gt;.b）</strong>只能用于 <strong>view 组件与其子节点</strong>之间，用于其他组件可能导致非预期的情况。</li>
+<li><strong>继承样式</strong>，如 <strong>font 、 color</strong> ，会从组件外继承到组件内。</li>
+<li><strong>除继承样式外</strong>， <code>app.wxss</code> 中的样式、组件所在页面的的样式<strong>对自定义组件无效</strong>。</li>
+<li></li>
+</ul>
+</blockquote>
+<h2 id="注册组件"><a href="#注册组件" class="headerlink" title="注册组件"></a>注册组件</h2><p>在自定义组件的 <code>js</code> 文件中和页面的js不同，需要使用 <strong>Component() 来注册组件</strong>，并提<strong>供组件的属性定义、内部数据和自定义方法</strong>。</p>
+<p>组件的属性值和内部数据将被用于组件 <code>wxml</code> 的渲染，其中，属性值是可由组件外部传入的。详情可参见 <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/component.html" target="_blank" rel="noopener">Component构造器</a> 。</p>
+<ul>
+<li>代码示例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  /**</span><br><span class="line">   * 组件的属性列表</span><br><span class="line">   */</span><br><span class="line">  properties: &#123;</span><br><span class="line">    show: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      value: false</span><br><span class="line">    &#125;,</span><br><span class="line">    count: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      value: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  /**</span><br><span class="line">   * 组件的初始数据</span><br><span class="line">   */</span><br><span class="line">  data: &#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  /**</span><br><span class="line">   * 组件的方法列表</span><br><span class="line">   */</span><br><span class="line">  methods: &#123;</span><br><span class="line">   //弹屏关闭</span><br><span class="line">    close() &#123;</span><br><span class="line">      this.setData(&#123;</span><br><span class="line">        show: &quot;false&quot;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    //组件按钮点击方法</span><br><span class="line">    callback() &#123;</span><br><span class="line">      console.log(&quot;&quot;);</span><br><span class="line">      this.triggerEvent(&apos;customevent&apos;, &#123;&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p> 自定义组件触发事件时，需要使用 <strong>triggerEvent</strong> 方法，<strong>指定事件名、detail对象和事件选项</strong>，例如上述代码的callback方法，其中customevent 是在引用组件时通过bindcustomevent指出的：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bottom-screen show=&quot;true&quot; count=&quot;10&quot; bindcustomevent=&quot;onReceivingTap&quot;&gt;&lt;/bottom-screen&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="使用组件"><a href="#使用组件" class="headerlink" title="使用组件"></a>使用组件</h1><h2 id="引入组件"><a href="#引入组件" class="headerlink" title="引入组件"></a>引入组件</h2><p>使用已注册的自定义组件前，<strong>首先要在页面的 json 文件中进行引用声明</strong>。此时需要<strong>提供每个自定义组件的标签名和对应的自定义组件文件路径</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;usingComponents&quot;: &#123;</span><br><span class="line">    &quot;bottom-screen&quot;: &quot;/components/bottom-screen/bottom-screen&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用组件-1"><a href="#使用组件-1" class="headerlink" title="使用组件"></a>使用组件</h2><p>在引入组件之后，在页面的 <code>wxml</code> 中就可以像<strong>使用基础组件一样使用自定义组件</strong>。节点名即自定义组件的标签名，节点属性即传递给组件的属性值。</p>
+<ul>
+<li>代码示例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;view&gt;</span><br><span class="line">  &lt;!-- 以下是对一个自定义组件的引用 --&gt;</span><br><span class="line">  &lt;bottom-screen show=&quot;true&quot; count=&quot;10&quot; bindcustomevent=&quot;onReceivingTap&quot;&gt;&lt;/bottom-screen&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+<p>自定义组件的 <strong>wxml 节点结构在与数据结合之后</strong>，<strong>将被插入到引用位置内</strong>。</p>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><ul>
+<li>对于基础库的1.5.x版本， <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/compatibility.html" target="_blank" rel="noopener">1.5.7</a> 也同样支持自定义组件。</li>
+<li>因为WXML<strong>节点标签名只能是小写字母和下划线的组合</strong>，所以自定义组件的标签名也只能包含小写字母和下划线。</li>
+<li>自定义组件也是可以引用自定义组件的，引用方法类似于页面引用自定义组件的方式（使用 <code>usingComponents</code> 字段）。</li>
+<li>自定义组件和使用自定义组件的页面所在<strong>项目根目录名不能以“wx-”为前缀，否则会报错</strong>。</li>
+<li>旧版本的基础库不支持自定义组件，此时，<strong>引用自定义组件的节点会变为默认的空节点</strong>。</li>
+</ul>
+<h1 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h1><p>当组件显示的时候，显示的是如下的效果：</p>
+<p><img src="/images/miniprogram/component1.png" alt="avatar"></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>1、<a href="https://www.cnblogs.com/storebook/p/8111618.html" target="_blank" rel="noopener">小程序自定义组件</a> </p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/08/15/http/https经过nginx后struts跳转成http/" class="next-post btn btn-default" title='https经过nginx后struts跳转成http'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">https经过nginx后struts跳转成http</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title" >文章目录</h3>
+		 
+			 
+				<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#创建组件"><span class="toc-text">创建组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#声明组件"><span class="toc-text">声明组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写组件模板和样式"><span class="toc-text">编写组件模板和样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件模板"><span class="toc-text">组件模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件样式"><span class="toc-text">组件样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注册组件"><span class="toc-text">注册组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用组件"><span class="toc-text">使用组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入组件"><span class="toc-text">引入组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用组件-1"><span class="toc-text">使用组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tip"><span class="toc-text">Tip</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果展示"><span class="toc-text">结果展示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+			 
+		 
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+			<div class="powered-by">
+				<i class="fa fa-user-md"></i>
+				<span id="busuanzi_container_site_uv">
+					本站访客数:<span id="busuanzi_value_site_uv"></span>
+				</span>
+			</div>
+            <div class="col-sm-12"> 
+				
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Cheryl</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
