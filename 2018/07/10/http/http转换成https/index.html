@@ -219,7 +219,7 @@
 <p>这里只介绍简单的keytool生成证书的方法，如果想要了解更多关于keytool的知识，请参考 <a href="http://ln-ydc.iteye.com/blog/1335213" target="_blank" rel="noopener"> keytool用法总结</a></p>
 </blockquote>
 <p> 1.创建证书,在命令行中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkeypair -alias &quot;test1&quot; -keyalg &quot;RSA&quot; -keystore &quot;test.keystore&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkeypair -<span class="built_in">alias</span> <span class="string">"test1"</span> -keyalg <span class="string">"RSA"</span> -keystore <span class="string">"test.keystore"</span></span><br></pre></td></tr></table></figure>
 <p><img src="/images/https/1.jpg" alt="avatar"></p>
 <ul>
 <li>功能：</li>
@@ -245,7 +245,7 @@
 <p>3.这里所说的证书库和密钥库是等同的(个人观点)</p>
 </blockquote>
 <p> 2.查看证书库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -keystore test.keystore</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -<span class="keyword">list</span> -keystore <span class="keyword">test</span>.keystore</span><br></pre></td></tr></table></figure>
 <p><img src="/images/https/2.jpg" alt="avatar"></p>
 <ul>
 <li>功能：</li>
@@ -254,7 +254,7 @@
 <p>查看名为test.keystore的证书库中的证书条目</p>
 </blockquote>
 <p> 3.导出到证书文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -export -alias test1 -file test.crt -keystore test.keystore</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -<span class="keyword">export</span> -<span class="keyword">alias</span> test1 -<span class="keyword">file</span> test.crt -keystore test.keystore</span><br></pre></td></tr></table></figure>
 <p><img src="/images/https/3.jpg" alt="avatar"></p>
 <ul>
 <li>功能：</li>
@@ -263,7 +263,7 @@
 <p> 将名为test.keystore的证书库中别名为test1的证书条目导出到证书文件test.crt中</p>
 </blockquote>
 <p> 4.导入证书的信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -import -keystore test_cacerts -file test.crt</span><br></pre></td></tr></table></figure>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">keytool</span> -<span class="keyword">import</span> -keystore test_cacerts -file test.crt</span><br></pre></td></tr></table></figure>
 <p> <img src="/images/https/4.jpg" alt="img"></p>
 <ul>
 <li>功能：</li>
@@ -272,17 +272,17 @@
 <p>将证书文件test.crt导入到名为test_cacerts的证书库中，</p>
 </blockquote>
 <p>5.查看证书信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -file &quot;test.crt&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -<span class="built_in">file</span> <span class="string">"test.crt"</span></span><br></pre></td></tr></table></figure>
 <p> <img src="/images/https/5.jpg" alt="img"></p>
 <ul>
 <li>功能：查看证书文件test.crt的信息</li>
 </ul>
 <p>执行完上述过程之后，我们会在&lt;JAVA_HOME&gt;\bin目录下面发现生成了3个文件</p>
-<h3 id="修改web程序的web-xml"><a href="#修改web程序的web-xml" class="headerlink" title="修改web程序的web.xml"></a>修改web程序的web.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;security-constraint&gt; </span><br><span class="line">		   &lt;web-resource-collection&gt; </span><br><span class="line">				  &lt;web-resource-name&gt;SSL&lt;/web-resource-name&gt; </span><br><span class="line">				  &lt;url-pattern&gt;/*&lt;/url-pattern&gt; </span><br><span class="line">		   &lt;/web-resource-collection&gt;                           </span><br><span class="line">		   &lt;user-data-constraint&gt; </span><br><span class="line">				  &lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt; </span><br><span class="line">		   &lt;/user-data-constraint&gt; </span><br><span class="line">	&lt;/security-constraint&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="修改web程序的web-xml"><a href="#修改web程序的web-xml" class="headerlink" title="修改web程序的web.xml"></a>修改web程序的web.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">security-constraint</span>&gt;</span> </span><br><span class="line">		   <span class="tag">&lt;<span class="name">web-resource-collection</span>&gt;</span> </span><br><span class="line">				  <span class="tag">&lt;<span class="name">web-resource-name</span>&gt;</span>SSL<span class="tag">&lt;/<span class="name">web-resource-name</span>&gt;</span> </span><br><span class="line">				  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span> </span><br><span class="line">		   <span class="tag">&lt;/<span class="name">web-resource-collection</span>&gt;</span>                           </span><br><span class="line">		   <span class="tag">&lt;<span class="name">user-data-constraint</span>&gt;</span> </span><br><span class="line">				  <span class="tag">&lt;<span class="name">transport-guarantee</span>&gt;</span>CONFIDENTIAL<span class="tag">&lt;/<span class="name">transport-guarantee</span>&gt;</span> </span><br><span class="line">		   <span class="tag">&lt;/<span class="name">user-data-constraint</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;/<span class="name">security-constraint</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>url-pattern:可以对系统中访问的路径进行过滤</li>
 </ul>
-<h3 id="修改tomcat的conf文件"><a href="#修改tomcat的conf文件" class="headerlink" title="修改tomcat的conf文件"></a>修改tomcat的conf文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;72&quot; protocol=&quot;HTTP/1.1&quot;    connectionTimeout=&quot;20000&quot;</span><br><span class="line">                redirectPort=&quot;8443&quot; </span><br><span class="line">			   SSLEnabled=&quot;true&quot;   maxThreads=&quot;150&quot; </span><br><span class="line">			   scheme=&quot;https&quot; secure=&quot;true&quot;   clientAuth=&quot;false&quot;</span><br><span class="line">			   keystoreFile=&quot;C:/tomcat/conf/test.keystore&quot;   </span><br><span class="line">			   keystorePass=&quot;123456&quot; sslProtocol=&quot;TLS&quot;</span><br><span class="line">			   URIEncoding=&quot;UTF-8&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="修改tomcat的conf文件"><a href="#修改tomcat的conf文件" class="headerlink" title="修改tomcat的conf文件"></a>修改tomcat的conf文件</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">"72"</span> <span class="attribute">protocol</span>=<span class="string">"HTTP/1.1"</span>    <span class="attribute">connectionTimeout</span>=<span class="string">"20000"</span></span><br><span class="line">                <span class="attribute">redirectPort</span>=<span class="string">"8443"</span> </span><br><span class="line">			   <span class="attribute">SSLEnabled</span>=<span class="string">"true"</span>   <span class="attribute">maxThreads</span>=<span class="string">"150"</span> </span><br><span class="line">			   <span class="attribute">scheme</span>=<span class="string">"https"</span> <span class="attribute">secure</span>=<span class="string">"true"</span>   <span class="attribute">clientAuth</span>=<span class="string">"false"</span></span><br><span class="line">			   <span class="attribute">keystoreFile</span>=<span class="string">"C:/tomcat/conf/test.keystore"</span>   </span><br><span class="line">			   <span class="attribute">keystorePass</span>=<span class="string">"123456"</span> <span class="attribute">sslProtocol</span>=<span class="string">"TLS"</span></span><br><span class="line">			   <span class="attribute">URIEncoding</span>=<span class="string">"UTF-8"</span>/&gt;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>keystoreFile：证书文件的位置</p>
 </li>
@@ -295,7 +295,7 @@
 </blockquote>
 <h3 id="配置web服务器"><a href="#配置web服务器" class="headerlink" title="配置web服务器"></a>配置web服务器</h3><p>1、 在Nginx的安装目录的conf下创建cert目录，并且将下载的全部文件拷贝到cert目录中。生成证书时，如果是系统自动生成会自己带有私钥文件，如果是自己创建的CSR文件，请将对应的私钥文件放到cert目录下并对其重命名建议和.pem证书文件的名称保持一致；</p>
 <p>2、 打开 Nginx 安装目录下 conf 目录中的 nginx.conf 文件进行修改(以下属性中ssl开头的属性与证书配置有直接关系，其它属性请结合自己的实际情况复制或调整)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name abc.test.com;</span><br><span class="line">    ssl on;</span><br><span class="line">    root html;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">    ssl_certificate   cert/xxx.pem;</span><br><span class="line">    ssl_certificate_key  cert/xxx.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root html;</span><br><span class="line">        index index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">    location /test&#123;</span><br><span class="line">        tcp_nodelay     on;  </span><br><span class="line">        proxy_set_header Host            $host;  </span><br><span class="line">        proxy_set_header X-Real-IP       $remote_addr;  </span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;  </span><br><span class="line">        proxy_pass http://www.baidu.com;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span>;</span><br><span class="line">    <span class="attribute">server_name</span> abc.test.com;</span><br><span class="line">    <span class="attribute">ssl</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">root</span> html;</span><br><span class="line">    <span class="attribute">index</span> index.html index.htm;</span><br><span class="line">    <span class="attribute">ssl_certificate</span>   cert/xxx.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span>  cert/xxx.key;</span><br><span class="line">    <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span> html;</span><br><span class="line">        <span class="attribute">index</span> index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> /test&#123;</span><br><span class="line">        <span class="attribute">tcp_nodelay</span>     <span class="literal">on</span>;  </span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host            <span class="variable">$host</span>;  </span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP       <span class="variable">$remote_addr</span>;  </span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;  </span><br><span class="line">        <span class="attribute">proxy_pass</span> http://www.baidu.com;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
 <li>1、 server_name 为系统监听的访问的服务域名。和阿里云中申请的证书的域名保持一致。</li>
@@ -328,15 +328,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/07/10/tomcat/tomcat设置定时启动/" class="pre-post btn btn-default" title='设置tomcat定时启动'>
+        <a href="/2018/07/10/video/实时视屏播放的简单实现/" class="pre-post btn btn-default" title='实时视屏播放的简单实现'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">设置tomcat定时启动</span>
+            <span class="hidden-xs">实时视屏播放的简单实现</span>
         </a>
     
     
-        <a href="/2018/07/10/video/实时视屏播放的简单实现/" class="next-post btn btn-default" title='实时视屏播放的简单实现'>
+        <a href="/2018/07/09/tomcat/tomcat常见配置信息/" class="next-post btn btn-default" title='Tomcat常见配置'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">实时视屏播放的简单实现</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Tomcat常见配置</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

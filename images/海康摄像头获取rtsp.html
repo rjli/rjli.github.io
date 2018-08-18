@@ -180,7 +180,7 @@
 <p><img src="E:\learn\gitbook\rtsp-hls-online-live\hk1.png" alt="avatar"></p>
 <p>7.得到rtsp地址</p>
 <p><strong>URL规定：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rtsp://username:password@&lt;ipaddress&gt;/&lt;videotype&gt;/ch&lt;number&gt;/&lt;streamtype&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rtsp://username:password@<span class="tag">&lt;<span class="name">ipaddress</span>&gt;</span>/<span class="tag">&lt;<span class="name">videotype</span>&gt;</span>/ch<span class="tag">&lt;<span class="name">number</span>&gt;</span>/<span class="tag">&lt;<span class="name">streamtype</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p> 注：</p>
 <p> 1.VLC可以支持解析URL里的用户名密码，实际发给设备的RTSP请求不支持带用户名密码。</p>
@@ -189,7 +189,7 @@
 <p> 4.streamtype:码流类型[主码流（main/av_stream） 子码流（sub/av_stream）]</p>
 </blockquote>
 <p>我们的rtsp取流地址为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rtsp://admin:hbj3022810@171.121.218.169:2554/h264/ch33/main/av_stream</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rtsp:<span class="regexp">//</span>admin:hbj3022810@<span class="number">171.121</span>.<span class="number">218.169</span>:<span class="number">2554</span><span class="regexp">/h264/</span>ch33<span class="regexp">/main/</span>av_stream</span><br></pre></td></tr></table></figure>
 <p>8、测试</p>
 <p>使用vlc播放器在添加网络流地址中输入上述地址即可播放。</p>
 <p>[相关文章]</p>

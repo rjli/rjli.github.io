@@ -203,7 +203,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="初始化本地仓库"><a href="#初始化本地仓库" class="headerlink" title="初始化本地仓库"></a>初始化本地仓库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://github.com/xx/xx.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+        <h1 id="初始化本地仓库"><a href="#初始化本地仓库" class="headerlink" title="初始化本地仓库"></a>初始化本地仓库</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git <span class="keyword">add</span><span class="bash"> README.md</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"first commit"</span></span></span><br><span class="line"><span class="bash">git remote add origin https://github.com/xx/xx.git</span></span><br><span class="line"><span class="bash">git push -u origin master</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>在github上面创建远程仓库的时候，不要创建readme.md,即可用上述命令创建成功</p>
 </blockquote>
@@ -225,10 +225,10 @@
 <p>在添加.gitignore文件的时候，参照 <a href="https://blog.csdn.net/qq_34581118/article/details/78437992?locationNum=4&amp;fps=1" target="_blank" rel="noopener">gitignore 原则</a></p>
 </blockquote>
 <h1 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h1><h2 id="查看commits"><a href="#查看commits" class="headerlink" title="查看commits"></a>查看commits</h2><p><strong>commits</strong>，它在git中扮演了一个重要角色，我们平常用的一些操作git clone ,git commit 都会产生commits，通俗的讲这个就是版本号。使用如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git reflog</span></span><br></pre></td></tr></table></figure>
 <h1 id="回退"><a href="#回退" class="headerlink" title="回退"></a>回退</h1><h2 id="push-成功后回退"><a href="#push-成功后回退" class="headerlink" title="push 成功后回退"></a>push 成功后回退</h2><p>我们在使用Git进行版本控制时，有可能会出现这种情况。git push后发现提交的内容不是想要的，这时候我们怎么做呢，提交上去的内容是没有删除按钮的（比如github，或码云）。所以我们需要一些手段将提交上去内容撤销下来。 </p>
 <h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><p>首先将本地的内容回退到自己想要的版本。回退版本我一般使用。在这里我们要明确的一点是git reset可以看成不产生commits，只是改变了当前HEAD指向的commits。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git reset</span></span><br></pre></td></tr></table></figure>
 <p>其中这条命令中又分为两种 </p>
 <ul>
 <li><p>git reset –sort</p>
@@ -239,14 +239,14 @@
 <p>  前者表示只是改变了HEAD的指向，本地代码不会变化，我们使用git status依然可以看到，同时也可以git commit提交。</p>
 <p>​    后者直接回改变本地源码，不仅仅指向变化了，代码也回到了那个版本时的代码，所以使用是一定要小心，想清楚。 </p>
 <p>  如果只是回退到上个版本可以使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset -–soft xx版本号xxxx </span><br><span class="line">git reset –-hard xx版本号xxx</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">reset</span> -–soft xx版本号xxxx </span><br><span class="line">git <span class="built_in">reset</span> –-hard xx版本号xxx</span><br></pre></td></tr></table></figure>
 <p>也可以使用下面的命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset –soft HEAD~1 </span><br><span class="line">git reset –hard HEAD~1</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> –soft <span class="keyword">HEAD</span>~<span class="number">1</span> </span><br><span class="line">git <span class="keyword">reset</span> –hard <span class="keyword">HEAD</span>~<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>因为前面说了HEAD就代表当前，所以上一个版本其实就是当前-1</p>
 </blockquote>
 <p>当我们使用下面的命令时，发现并没有发生什么变化，因为HEAD表示的就是当前版本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="keyword">HEAD</span></span><br></pre></td></tr></table></figure>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote>
 <p>git reset –soft HEAD~1</p>
 </blockquote>
@@ -266,11 +266,11 @@
 <h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><ul>
 <li>删除本地分支</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D &lt;BranchName&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">branch </span>-D &lt;<span class="keyword">BranchName&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>删除远程分支</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete &lt;BranchName&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> --<span class="built_in">delete</span> &lt;BranchName&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h3><ul>
 <li>使用如下git命令查看所有远程分支：</li>
 </ul>
@@ -314,7 +314,7 @@
 <p>  【 解决方案】</p>
 <ul>
 <li><p>首先,检查你的起源是设定的运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git remote -v</span></span><br></pre></td></tr></table></figure>
 <p>​                         </p>
 </li>
 </ul>
@@ -329,15 +329,15 @@
 <p> github RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054</p>
 </blockquote>
 <p>出现此问题有可能是上传大小限制<br>执行如下命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config http.postBuffer 524288000</span><br><span class="line">//524288000算法： 1024*1024*500(500M)</span><br></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config http.postBuffer <span class="number">524288000</span></span><br><span class="line">//<span class="number">524288000</span>算法： <span class="number">1024*1024</span>*<span class="number">500</span>(<span class="number">500</span>M)</span><br></pre></td></tr></table></figure>
 <p>在更改了文件大小之后，可能会出现如下错误：</p>
 <blockquote>
 <p> curl 56 OpenSSL SSL_read:SSL_ERROR_sysCALL</p>
 </blockquote>
 <p>因为服务器的SSL证书没有经过第三方机构的签署，所以才报错。解决方案如下：<br>第一步，克隆远程仓库时，用env命令设置GIT_SSL_NO_VERIFY环境变量为”ture”，并同时调用正常的git clone命令。完整的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">env GIT_SSL_NO_VERIFY=true git clone https://&lt;host_name/git/project.git</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">env <span class="attr">GIT_SSL_NO_VERIFY=</span><span class="literal">true</span> git <span class="keyword">clone</span> <span class="title">https</span>://<span class="tag">&lt;host_name/git/project.git</span></span><br><span class="line"><span class="tag">12</span></span><br></pre></td></tr></table></figure>
 <p>第二步，在克隆完毕的仓库中将http.sslVerify设置为”false”。完整的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>http.sslVerify <span class="string">"false"</span></span><br></pre></td></tr></table></figure>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li><a href="http://img.blog.csdn.net/20160613140756568" target="_blank" rel="noopener">git常见命令思维导图</a></li>
 </ul>
