@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+	<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+		.pace .pace-progress {
+			background: #1E92FB; /*进度条颜色*/
+			height: 3px;
+		}
+		.pace .pace-progress-inner {
+			 box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+		}
+		.pace .pace-activity {
+			border-top-color: #1E92FB;    /*上边框颜色*/
+			border-left-color: #1E92FB;    /*左边框颜色*/
+		}
+	</style>
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>使用百度地图实现位置选择 | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+	 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="使用百度地图实现位置选择">
+            
+	            使用百度地图实现位置选择
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/前端">
+            前端
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/baidumap" title='baidumap'>
+                        baidumap
+                    </a>
+                
+                    <a href="/tags/html" title='html'>
+                        html
+                    </a>
+                
+                    <a href="/tags/js" title='js'>
+                        js
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/07/31</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="实现位置检索"><a href="#实现位置检索" class="headerlink" title="实现位置检索"></a>实现位置检索</h1><p>在系统开发中我们经常需要确定一个单位或者是机器的地理位置，如果自己在地图上查找是比较小号时间的，这里可以根据百度地图的本地搜索服务根据关键字对于需要定位位置进行检索。</p>
+<h2 id="引入相关资源"><a href="#引入相关资源" class="headerlink" title="引入相关资源"></a>引入相关资源</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  加载百度地图的api --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://api.map.baidu.com/api?v=2.0&amp;ak=对应的密钥"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="初始化地图容器"><a href="#初始化地图容器" class="headerlink" title="初始化地图容器"></a>初始化地图容器</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"watchPage"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h3</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">			地位位置选择页面</span><br><span class="line">		<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	要定位的地址：</span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"text_"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">style</span>=<span class="string">"margin-right: 100px;"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">onclick</span>=<span class="string">"searchLocationInfo();"</span>&gt;</span>查询<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">style</span>=<span class="string">"position: absolute; width: 96%; padding: 20px; height: 86%; top: 88; left: 20; border: 1px solid gray; overflow: hidden;"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="初始化的的图配置"><a href="#初始化的的图配置" class="headerlink" title="初始化的的图配置"></a>初始化的的图配置</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> moid;</span><br><span class="line"><span class="keyword">var</span> poi;</span><br><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> BMap.Map(<span class="string">"container"</span>);</span><br><span class="line"><span class="keyword">var</span> poi = <span class="keyword">new</span> BMap.Point(<span class="number">112.560091</span>, <span class="number">37.879703</span>);</span><br><span class="line">map.centerAndZoom(poi, <span class="number">12</span>);</span><br><span class="line">map.enableScrollWheelZoom(); <span class="comment">//启用滚轮放大缩小，默认禁用</span></span><br><span class="line">map.enableContinuousZoom(); <span class="comment">//启用地图惯性拖拽，默认禁用</span></span><br><span class="line"></span><br><span class="line">map.addControl(<span class="keyword">new</span> BMap.NavigationControl()); <span class="comment">//添加默认缩放平移控件</span></span><br><span class="line">map.addControl(<span class="keyword">new</span> BMap.OverviewMapControl()); <span class="comment">//添加默认缩略地图控件</span></span><br><span class="line">map.addControl(<span class="keyword">new</span> BMap.OverviewMapControl( &#123;</span><br><span class="line">	isOpen : <span class="literal">true</span>,</span><br><span class="line">	anchor : BMAP_ANCHOR_BOTTOM_RIGHT</span><br><span class="line">&#125;)); <span class="comment">//右下角，打开</span></span><br></pre></td></tr></table></figure>
+<h2 id="定义本地检索服务"><a href="#定义本地检索服务" class="headerlink" title="定义本地检索服务"></a>定义本地检索服务</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">local = <span class="keyword">new</span> BMap.LocalSearch(map, &#123;</span><br><span class="line">	renderOptions : &#123;</span><br><span class="line">		map : map,</span><br><span class="line">		autoViewport : <span class="literal">true</span>,</span><br><span class="line">		selectFirstResult : <span class="literal">false</span></span><br><span class="line">	&#125;,</span><br><span class="line">	pageCapacity : <span class="number">10</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//定义地图上展示的marker标记</span></span><br><span class="line">myIcon = <span class="keyword">new</span> BMap.Icon(<span class="string">"http://api.map.baidu.com/img/markers.png"</span>,</span><br><span class="line">		<span class="keyword">new</span> BMap.Size(<span class="number">23</span>, <span class="number">25</span>), &#123;</span><br><span class="line">			offset : <span class="keyword">new</span> BMap.Size(<span class="number">10</span>, <span class="number">25</span>),</span><br><span class="line">			imageOffset : <span class="keyword">new</span> BMap.Size(<span class="number">0</span>, <span class="number">0</span> - <span class="number">10</span> * <span class="number">25</span>)</span><br><span class="line">		&#125;);</span><br><span class="line"><span class="comment">//设置检索服务的返回的Marker标记的处理，并重新定义marker的弹出的infoWindow的内容，提供选择位置的按钮</span></span><br><span class="line">loca.setMarkersSetCallback(<span class="function"><span class="keyword">function</span>(<span class="params">pois</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; pois.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> markerInfo = pois[i];</span><br><span class="line">        <span class="keyword">var</span> marker = pois[i].marker;</span><br><span class="line">        <span class="keyword">var</span> address = markerInfo.address;</span><br><span class="line">        <span class="keyword">var</span> lng = markerInfo.point.lng;</span><br><span class="line">        <span class="keyword">var</span> lat = markerInfo.point.lat;</span><br><span class="line">        <span class="keyword">var</span> contents = <span class="string">"【"</span></span><br><span class="line">        + markerInfo.title</span><br><span class="line">        + <span class="string">"】, &lt;a target='_blank' style='color:blue' href='"</span></span><br><span class="line">        + markerInfo.detailUrl</span><br><span class="line">        + <span class="string">"'&gt;详情&lt;/a&gt;&lt;br/&gt;&lt;div style='color:gray;'&gt;地址："</span></span><br><span class="line">        + address</span><br><span class="line">        + <span class="string">"&lt;/div&gt;"</span></span><br><span class="line">        + <span class="string">"&lt;br/&gt;&lt;a class='btn btn-info btn-block' onclick='chooselocation(\""</span></span><br><span class="line">        + address + <span class="string">"\",\""</span> + lng + <span class="string">"\",\""</span> + lat</span><br><span class="line">        + <span class="string">"\")'&gt;选择&lt;/a&gt;"</span>;</span><br><span class="line">        marker.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> infoWindow = <span class="keyword">new</span> BMap.InfoWindow(</span><br><span class="line">                <span class="string">"&lt;p style='font-size:14px;'&gt;"</span> + contents + <span class="string">"&lt;/p&gt;"</span>);</span><br><span class="line">            <span class="keyword">this</span>.openInfoWindow(infoWindow);</span><br><span class="line">        &#125;,<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//设置检索服务的返回值的处理</span></span><br><span class="line">local.setSearchCompleteCallback(<span class="function"><span class="keyword">function</span>(<span class="params">searchResults</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> (searchResults) == <span class="string">"undefined"</span> || searchResults.Br.length&lt;=<span class="number">0</span>) &#123;</span><br><span class="line">		com_div_msg(<span class="string">"百度API没有搜索到该地址,建议手动选择地点进行设置"</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (searchResults.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> searchResult = searchResults[<span class="number">0</span>];</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">var</span> searchResult = searchResults;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//设置第一个搜索结果为地图中心</span></span><br><span class="line">		<span class="keyword">var</span> poi = searchResult.getPoi(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span> (poi) &#123;</span><br><span class="line">			<span class="comment">//设置中心点  </span></span><br><span class="line">			map.centerAndZoom(poi.point, <span class="number">13</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="设置地图点击事件"><a href="#设置地图点击事件" class="headerlink" title="设置地图点击事件"></a>设置地图点击事件</h2><p>这里设置地图的点击事件，主要是为了如果百度地图检索不出来对应的地理位置的话，用户可以自己在地图上查找。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">map.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!event.overlay)&#123;</span><br><span class="line">		com_div_msg(<span class="string">"温馨提示：请您自己输入安装位置"</span>);</span><br><span class="line">		chooselocation(<span class="string">""</span>, event.point.lng, event.point.lat);</span><br><span class="line">	    </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里需要注意的一点是因为地图上添加了点击事件，同时地图上的覆盖物marker也有点击事件，如果在map的点击事件中不进行判断的话，会首先执行map的点击事件，然后再执覆盖物的点击事件，所以在这里进行判断，如果点击事件中的event的overlay为空的话执行具体的逻辑，否则不执行。</p>
+</blockquote>
+<h2 id="查询方法"><a href="#查询方法" class="headerlink" title="查询方法"></a>查询方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchLocationInfo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	local.search($(<span class="string">"#text_"</span>).val());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="选择位置"><a href="#选择位置" class="headerlink" title="选择位置"></a>选择位置</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chooselocation = <span class="function"><span class="keyword">function</span>(<span class="params">address, lng, lat</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (confirm(<span class="string">"确定选择这里吗？"</span>)) &#123;</span><br><span class="line">		$(<span class="string">"#machineAddress"</span>).val(address);</span><br><span class="line">		$(<span class="string">"#machineLongtitude"</span>).val(lng);</span><br><span class="line">		$(<span class="string">"#machineLatitude"</span>).val(lat);</span><br><span class="line">		$(<span class="string">"#closeMapBtn"</span>).click();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p><img src="/images/plugins/baidumap1.png" alt="avatar"></p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="https访问的问题"><a href="#https访问的问题" class="headerlink" title="https访问的问题"></a>https访问的问题</h2><p>公司一直用的http的方式，当更换成https之后发现，原本在网页内显示的百度地图不见了。</p>
+<p>【原因】https影响。</p>
+<p>【解决办法】</p>
+<p>将原来的<a href="https://api.map.baidu.com/api?v=2.0&amp;ak=" target="_blank" rel="noopener">http://api.map.baidu.com/api?v=2.0&amp;ak=</a>你的秘钥</p>
+<p>变成：<a href="https://api.map.baidu.com/api?v=2.0&amp;ak=你的秘钥&amp;s=1就可以正常显示啦。" target="_blank" rel="noopener">https://api.map.baidu.com/api?v=2.0&amp;ak=你的秘钥&amp;s=1就可以正常显示啦。</a></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/07/31/plugins/echarts/" class="pre-post btn btn-default" title='在项目中使用Echarts'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">在项目中使用Echarts</span>
+        </a>
+    
+    
+        <a href="/2018/07/23/node/npm常见问题/" class="next-post btn btn-default" title=''>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs"></span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title" >文章目录</h3>
+		 
+			 
+				<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#实现位置检索"><span class="toc-text">实现位置检索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入相关资源"><span class="toc-text">引入相关资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化地图容器"><span class="toc-text">初始化地图容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化的的图配置"><span class="toc-text">初始化的的图配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义本地检索服务"><span class="toc-text">定义本地检索服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置地图点击事件"><span class="toc-text">设置地图点击事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询方法"><span class="toc-text">查询方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择位置"><span class="toc-text">选择位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结果展示"><span class="toc-text">结果展示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见问题"><span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#https访问的问题"><span class="toc-text">https访问的问题</span></a></li></ol></li></ol>
+			 
+		 
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+			<div class="powered-by">
+				<i class="fa fa-user-md"></i>
+				<span id="busuanzi_container_site_uv">
+					本站访客数:<span id="busuanzi_value_site_uv"></span>
+				</span>
+			</div>
+            <div class="col-sm-12"> 
+				
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Cheryl</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

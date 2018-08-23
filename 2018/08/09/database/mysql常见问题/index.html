@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Cheryl的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+	<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+		.pace .pace-progress {
+			background: #1E92FB; /*进度条颜色*/
+			height: 3px;
+		}
+		.pace .pace-progress-inner {
+			 box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+		}
+		.pace .pace-activity {
+			border-top-color: #1E92FB;    /*上边框颜色*/
+			border-left-color: #1E92FB;    /*左边框颜色*/
+		}
+	</style>
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Mysql常见问题及解决 | Cheryl的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Cheryl的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+	 <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0eeeae6f.js","daovoice")
+	 daovoice('init', {
+	  app_id: "49e51563"
+	});
+	daovoice('update');
+	 </script>
+	 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Cheryl Lee'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术是一种信念 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Cheryl的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/小程序/"><i class="fa "></i>小程序</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Mysql常见问题及解决">
+            
+	            Mysql常见问题及解决
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/后端">
+            后端
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/mysql" title='mysql'>
+                        mysql
+                    </a>
+                
+                    <a href="/tags/utf-8" title='utf-8'>
+                        utf-8
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/08/09</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="UTF-8编码字节个数问题"><a href="#UTF-8编码字节个数问题" class="headerlink" title="UTF-8编码字节个数问题"></a>UTF-8编码字节个数问题</h1><h2 id="错误内容"><a href="#错误内容" class="headerlink" title="错误内容"></a>错误内容</h2><p><strong>Incorrect string value: ‘\xF0\x9F…’ for column ‘XXX’ at row 1</strong></p>
+<p>这个问题，原因是UTF-8编码有可能是两个、三个、四个字节。Emoji表情或者某些特殊字符是4个字节，而Mysql的utf8编码最多3个字节，所以数据插不进去。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
+<li>在mysql的安装目录下找到my.ini,作如下修改：</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">mysqld</span>]</span><br><span class="line">character-<span class="keyword">set</span>-server=utf8mb4</span><br><span class="line">[<span class="meta">mysql</span>]</span><br><span class="line"><span class="keyword">default</span>-character-<span class="keyword">set</span>=utf8mb4</span><br><span class="line">修改后重启Mysql</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将已经建好的表也转换成utf8mb4</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">更改数据库编码：<span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> caitu99 <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_general_ci;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> TABLE_NAME <span class="keyword">convert</span> <span class="keyword">to</span> <span class="built_in">character</span> <span class="keyword">set</span> utf8mb4 <span class="keyword">collate</span> utf8mb4_bin; （将TABLE_NAME替换成你的表名）</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改mysql配置文件my.cnf（windows为my.ini） </li>
+</ul>
+<p>my.cnf一般在/etc/my.cnf位置。找到后请在以下三部分里添加如下内容： </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[client]</span> </span><br><span class="line"><span class="attr">default-character-set</span> = utf8mb4 </span><br><span class="line"><span class="section">[mysql]</span> </span><br><span class="line"><span class="attr">default-character-set</span> = utf8mb4</span><br><span class="line"><span class="section">[mysqld]</span> </span><br><span class="line"><span class="attr">character-set-client-handshake</span> = <span class="literal">FALSE</span> </span><br><span class="line"><span class="attr">character-set-server</span> = utf8mb4 </span><br><span class="line"><span class="attr">collation-server</span> = utf8mb4_unicode_ci </span><br><span class="line"><span class="attr">init_connect</span>=<span class="string">'SET NAMES utf8mb4'</span></span><br></pre></td></tr></table></figure>
+<h1 id="忽略大小写问题"><a href="#忽略大小写问题" class="headerlink" title="忽略大小写问题"></a>忽略大小写问题</h1><h2 id="错误内容-1"><a href="#错误内容-1" class="headerlink" title="错误内容"></a>错误内容</h2><p>在系统运行时，ba_user表实际上是存在的，但是因为mysql大小写的问题，所以在执行服务时找不到对应的表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table <span class="string">'booktobook.BA_User'</span> doesn<span class="string">'t exista</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeQuery(NewProxyPreparedStatement.java:116)</span></span><br><span class="line"><span class="string">	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:82)</span></span><br><span class="line"><span class="string">	... 82 more</span></span><br></pre></td></tr></table></figure>
+<h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><ul>
+<li>查看大小写区分<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show <span class="keyword">variables</span> like <span class="comment">"%case%"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果：</p>
+<table>
+<thead>
+<tr>
+<th>Variable_name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lower_case_file_system</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td>lower_case_table_names</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>【注意】</p>
+<p>MYSQL在LINUX下数据库名、表名、列名、别名大小写规则如下：</p>
+<ol>
+<li><p>据库名与表名是严格区分大小写的 </p>
+</li>
+<li><p>表的别名是严格区分大小写的  </p>
+</li>
+<li>列名与列的别名在所有的情况下均是忽略大小写的 </li>
+<li>变量名也是严格区分大小写的  </li>
+</ol>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ul>
+<li>用ROOT登录，修改/etc/my.cnf 　</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vi</span> /etc/my.<span class="keyword">cnf</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在[mysqld]下加入一行：lower_case_table_names=1 　　</li>
+<li>重新启动数据库即可</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/mysqld restart</span></span><br></pre></td></tr></table></figure>
+<h1 id="链接超时问题"><a href="#链接超时问题" class="headerlink" title="链接超时问题"></a>链接超时问题</h1><h2 id="错误内容-2"><a href="#错误内容-2" class="headerlink" title="错误内容"></a>错误内容</h2><p>使用Connector/J连接MySQL数据库，程序运行较长时间后就会报以下错误：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Communications link failure，The last packet successfully received from the server was * millisecond ago.The last packet successfully sent to the server was *  millisecond ago。</span><br></pre></td></tr></table></figure>
+<p>##错误原因</p>
+<p>MySQL服务器默认的“wait_timeout”是28800秒即8小时，意味着如果一个连接的空闲时间超过8个小时，MySQL将自动断开该连接，而连接池却认为该连接还是有效的(因为并未校验连接的有效性)，当应用申请使用该连接时，就会导致上面的报错。</p>
+<p>##解决方法</p>
+<p>修改数据库的wait_timeout最大为31536000即1年，在my.cnf中加入：</p>
+<p>[mysqld]</p>
+<p>wait_timeout=31536000</p>
+<p>interactive_timeout=31536000</p>
+<p>重启生效，需要同时修改这两个参数。</p>
+<h1 id="列未出现在group-by中导致语法错误"><a href="#列未出现在group-by中导致语法错误" class="headerlink" title="列未出现在group by中导致语法错误"></a>列未出现在group by中导致语法错误</h1><p>在执行mysql的查询语句时，之前在windows上是可以的，换到linux上语句无法正常执行。</p>
+<h2 id="错误内容-3"><a href="#错误内容-3" class="headerlink" title="错误内容"></a>错误内容</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'database_tl.emp.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by</span><br></pre></td></tr></table></figure>
+<h2 id="错误原因-1"><a href="#错误原因-1" class="headerlink" title="错误原因"></a>错误原因</h2><p>看一下group by的语法：</p>
+<p>select 选取分组中的列+聚合函数 from 表名称 group by 分组的列 </p>
+<p>从语法格式来看，是先有分组，再确定检索的列，检索的列只能在参加分组的列中选。</p>
+<p>我当前Mysql版本5.7.17，</p>
+<p>再看一下ONLY_FULL_GROUP_BY的意思是：对于GROUP BY聚合操作，如果在SELECT中的列，没有在GROUP BY中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中，也就是说查出来的列必须在group by后面出现否则就会报错，或者这个字段出现在聚合函数里面。</p>
+<ul>
+<li><p>查看mysql版本命令：<code>select version()</code></p>
+</li>
+<li><p>查看sql_model参数命令：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">SELECT</span> @@<span class="keyword">GLOBAL</span>.<span class="keyword">sql_mode</span>;</span><br><span class="line"><span class="selector-tag">SELECT</span> @@<span class="keyword">SESSION</span>.<span class="keyword">sql_mode</span>;</span><br></pre></td></tr></table></figure>
+<p>发现：</p>
+<p>第一项默认开启ONLY_FULL_GROUP_BY。</p>
+<blockquote>
+<p>sql_mode的模式为以下几种：ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
+<li>只选择出现在group by后面的列，或者给列增加聚合函数；（不推荐）</li>
+<li>更改GLOBAL.sql_mode</li>
+</ul>
+<p>如果想彻底修改需要更改my.conf 配置(my.confl是在inux下面，如果是windows则是my.ini)<br>在 [mysqld]和[mysql]下添加</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sql_mode</span> =<span class="string">'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'</span>;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/08/09/minipogram/微信小程序昵称特殊字符的处理/" class="pre-post btn btn-default" title='微信小程序昵称特殊字符的处理'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">微信小程序昵称特殊字符的处理</span>
+        </a>
+    
+    
+        <a href="/2018/08/06/minipogram/使用wxParse解析富文本/" class="next-post btn btn-default" title='使用wxParse解析html富文本内容'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">使用wxParse解析html富文本内容</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkzOC8xNDQ2OQ==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title" >文章目录</h3>
+		 
+			 
+				<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UTF-8编码字节个数问题"><span class="toc-text">UTF-8编码字节个数问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#错误内容"><span class="toc-text">错误内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#忽略大小写问题"><span class="toc-text">忽略大小写问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#错误内容-1"><span class="toc-text">错误内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误原因"><span class="toc-text">错误原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-text">解决办法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#链接超时问题"><span class="toc-text">链接超时问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#错误内容-2"><span class="toc-text">错误内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#列未出现在group-by中导致语法错误"><span class="toc-text">列未出现在group by中导致语法错误</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#错误内容-3"><span class="toc-text">错误内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误原因-1"><span class="toc-text">错误原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法-1"><span class="toc-text">解决方法</span></a></li></ol></li></ol>
+			 
+		 
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+			<div class="powered-by">
+				<i class="fa fa-user-md"></i>
+				<span id="busuanzi_container_site_uv">
+					本站访客数:<span id="busuanzi_value_site_uv"></span>
+				</span>
+			</div>
+            <div class="col-sm-12"> 
+				
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Cheryl</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
